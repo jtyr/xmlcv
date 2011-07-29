@@ -1,0 +1,123 @@
+/*
+ **********************************************************
+ ** Description: CSS stylesheet for XMLCL
+ **
+ ** (c) Jiri Tyr 2011
+ **********************************************************
+ */
+
+
+body {
+	font-family: "Arial CE", "Helvetica CE", Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	color: black;
+	background-color: gray;
+	margin: 0;
+	padding: 10px;
+}
+
+body[class] #Page {
+	width: auto;
+}
+
+/* ------------------------------------------------------ */
+
+a {
+	color: black;
+	text-decoration: none;
+	background-color: inherit;
+}
+
+a:hover {
+	color: blue;
+	text-decoration: none;
+	background-color: inherit;
+}
+
+/* ------------------------------------------------------ */
+
+#Page {
+	width: 170mm;
+	min-width: 170mm;
+	max-width: 170mm;
+	margin: 0 auto;
+	text-align: left;
+	border: 2px solid silver;
+	padding: 20mm;
+	background-color: white;
+}
+
+/* ------------------------------------------------------ */
+
+.text_nth {
+	vertical-align: text-top;
+	font-size: 70%;
+}
+
+.personal_name {
+	font-weight: bold;
+	font-size: 18pt;
+}
+
+.personal_address {
+	font-size: 10pt;
+	text-align: right;
+}
+
+.personal_contact {
+	font-size: 10pt;
+	margin-bottom: 32pt;
+	text-align: right;
+}
+
+.recipients {
+	margin-bottom: 24pt;
+}
+
+.date {
+	margin-bottom: 24pt;
+}
+
+.salutation_block {
+	margin-bottom: 6pt;
+}
+
+.text_p {
+	margin-bottom: 8pt;
+	text-indent: 10mm;
+	text-align: justify;
+}
+
+.greeting {
+}
+
+.greeting_name {
+	margin-bottom: 32pt;
+}
+
+.ruler {
+	font-size: 0;
+	margin-top: 12pt;
+	margin-bottom: 10pt;
+	border-bottom: 2px solid black;
+}
+
+/* ------------------------------------------------------ */
+
+.generated_by {
+	text-align: center;
+}
+
+.generated_by a {
+	color: silver;
+	font-size: 8pt;
+	text-decoration: none;
+}
+
+.generated_by a:hover {
+	color: blue;
+	text-decoration: underline;
+}
+
+/* ------------------------------------------------------ */

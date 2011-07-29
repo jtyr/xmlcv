@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  **********************************************************
+  ** Description: RELAX-NG scheme for validation of
+  **              XMLCL data source file
+  **
+  ** (c) Jiri Tyr 2011
+  **********************************************************
+  -->
+
+
+<element name="cv" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+</element>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  **********************************************************
+  ** Description: English texts for XMLCL
+  **
+  ** (c) Jiri Tyr 2011
+  **********************************************************
+  -->
+
+
+<lang_text>
+  <text id="cl">Cover Letter</text>
+  <text id="of"> of </text>
+
+  <!-- addressing of the cover letter -->
+  <text id="salutation_beginning">Dear </text>
+  <text id="salutation_default">Sir or Madam</text>
+  <text id="salutation_end">,</text>
+
+  <!-- default greeting -->
+  <text id="greeting">Yours sincerely,</text>
+
+  <!--
+    %d - day of month (e.g., 01)
+    %m - month (01..12)
+    %b - locale’s abbreviated month name (e.g., Jan)
+    %B - locale’s full month name (e.g., January)
+    %y - last two digits of year (00..99)
+    %Y - year
+  -->
+  <text id="full_date_format">%B %d, %Y</text>
+
+  <text id="date_jan">Jan</text>
+  <text id="date_feb">Feb</text>
+  <text id="date_mar">Mar</text>
+  <text id="date_apr">Apr</text>
+  <text id="date_may">May</text>
+  <text id="date_jun">Jun</text>
+  <text id="date_jul">Jul</text>
+  <text id="date_aug">Aug</text>
+  <text id="date_sep">Sep</text>
+  <text id="date_oct">Oct</text>
+  <text id="date_nov">Nov</text>
+  <text id="date_dec">Dec</text>
+
+  <text id="date_full_jan">January</text>
+  <text id="date_full_feb">February</text>
+  <text id="date_full_mar">March</text>
+  <text id="date_full_apr">April</text>
+  <text id="date_full_may">May</text>
+  <text id="date_full_jun">June</text>
+  <text id="date_full_jul">July</text>
+  <text id="date_full_aug">August</text>
+  <text id="date_full_sep">September</text>
+  <text id="date_full_oct">October</text>
+  <text id="date_full_nov">November</text>
+  <text id="date_full_dec">December</text>
+
+  <text id="date_other">??</text>
+
+  <text id="generated_by">Created in XMLCV</text>
+</lang_text>

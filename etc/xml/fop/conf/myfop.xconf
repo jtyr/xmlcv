@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE fop [
+<!ENTITY fop.home "file:///etc/xml/fop/">
+<!ENTITY fonts.dir "file:///usr/share/fonts/corefonts">
+]>
+
+<!-- NOTE: This is the version of the configuration -->
+<fop version="1.0">
+
+  <!-- Strict user configuration -->
+  <strict-configuration>true</strict-configuration>
+
+  <!-- Strict FO validation -->
+  <strict-validation>true</strict-validation>
+
+  <!-- Base URL for resolving relative URLs -->
+  <base>./</base>
+  
+  <!-- Font Base URL for resolving relative font URLs -->
+  <font-base>/usr/share/fonts/TTF_my</font-base>
+
+  <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+  <source-resolution>72</source-resolution>
+  <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+  <target-resolution>72</target-resolution>
+  
+  <!-- Default page-height and page-width, in case
+       value is specified as auto -->
+  <default-page-settings height="297mm" width="210mm"/>
+  
+  <!-- Information for specific renderers -->
+  <!-- Uses renderer mime type for renderers -->
+  <renderers>
+    <renderer mime="application/pdf">
+      <filterList>
+        <!-- provides compression using zlib flate (default is on) -->
+        <value>flate</value>
+      </filterList>
+
+      <fonts>
+        <!-- embedded fonts -->
+        <font metrics-url="&fop.home;/font/arial.xml" kerning="no" embed-url="&fonts.dir;/arial.ttf">
+          <font-triplet name="Arial" style="normal" weight="normal"/>
+          <font-triplet name="sans-serif" style="normal" weight="normal"/>
+        </font>
+        <font metrics-url="&fop.home;/font/ariali.xml" kerning="no" embed-url="&fonts.dir;/ariali.ttf">
+          <font-triplet name="Arial" style="italic" weight="normal"/>
+          <font-triplet name="sans-serif" style="italic" weight="normal"/>
+        </font>
+        <font metrics-url="&fop.home;/font/arialbi.xml" kerning="no" embed-url="&fonts.dir;/arialbi.ttf">
+          <font-triplet name="Arial" style="italic" weight="bold"/>
+          <font-triplet name="sans-serif" style="italic" weight="bold"/>
+        </font>
+        <font metrics-url="&fop.home;/font/arialbd.xml" kerning="no" embed-url="&fonts.dir;/arialbd.ttf">
+          <font-triplet name="Arial" style="normal" weight="bold"/>
+          <font-triplet name="sans-serif" style="normal" weight="bold"/>
+        </font>
+      </fonts>
+    </renderer>
+  </renderers>
+
+</fop>

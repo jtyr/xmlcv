@@ -1,0 +1,41 @@
+Changes in version 0.4:
+* added XMLCL - templates for creation of Cover Letters
+* added pure TXT output template
+* added French translation (probably needs some corrections)
+* added the possibility to format text in text-block/text and
+  work-experience/description (b, i, u, th, st)
+* added option for pages in the Publication section
+* added option for residence in the address block
+* added option to define key skills in the work-experience section
+* added option to define a role of some elements (text-block title, text-block
+  text, work-experience title, work-experience description, skill title)
+* correction of the German translation (thanks to Reiner Rottmann)
+* correction of newer printed middle name in the Signature section
+* CERF levels re-definition according to the official terminology (en, cs)
+* improved Shell script for CV generation (scripts/XMLCV.sh)
+* minor simplification of the FO and HTML template
+
+Changes in version 0.3:
+* it is possible to specify more phone and fax numbers
+* added telephone attribute for mobile phone number
+* added telephone attribute for personal and office prone number
+* added PGP Key ID definition
+* added Homepage definition
+* added Instant Messaging definition
+* added Signature Line definition
+* added new Computer knowledge table type containing only Name, Years of use,
+  Last use and Self rating (no empty columns)
+* added German translation (thanks to Reiner Rottmann)
+
+Changes in version 0.2:
+* added posibility to add photo
+* added posibility to qualify language skills in CEF format
+  (The Common European Framework of Reference)
+* added posibility for a FAX number
+* fixed hyphenation problem in FOP
+* some fixes of the RelaxNG scheme
+* some blockes was renamed to be more universal
+* some graphical changes
+
+Changes in version 0.1:
+* initial version

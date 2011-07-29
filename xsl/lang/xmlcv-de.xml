@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  **********************************************************
+  ** Description: English texts for XMLCV
+  **
+  ** (c) Jiri Tyr 2008-2011
+  **
+  ** Translated by Reiner Rottmann
+  **********************************************************
+  -->
+
+
+<lang_text>
+  <text id="cv">CURRICULUM VITAE</text>
+
+  <text id="of"> von </text>
+  <text id="page_number">Seite </text>
+  <text id="page_of"> von </text>
+
+  <text id="personal_name">Name:</text>
+  <text id="personal_address">Adresse:</text>
+  <text id="personal_telephone">Telefon:</text>
+  <text id="personal_telephone_private">Telefon (privat):</text>
+  <text id="personal_telephone_office">Telefon (geschäftlich):</text>
+  <text id="personal_mobile">Mobil:</text>
+  <text id="personal_mobile_private">Mobil (privat):</text>
+  <text id="personal_mobile_office">Mobil (geschäftlich):</text>
+  <text id="personal_fax">Fax:</text>
+  <text id="personal_fax_private">Fax (privat):</text>
+  <text id="personal_fax_office">Fax (geschäftlich):</text>
+  <text id="personal_email">E-mail:</text>
+  <text id="personal_homepage">Homepage:</text>
+  <text id="personal_pgpid">PGP key ID:</text>
+  <text id="personal_nationality">Nationalität:</text>
+  <text id="personal_birthday">Geburtstag:</text>
+  <text id="personal_birthday">Alter:</text>
+  <text id="personal_gender">Geschlecht:</text>
+  <text id="personal_gender_male">Männlich</text>
+  <text id="personal_gender_female">Weiblich</text>
+  <text id="personal_merital_status">Familienstand:</text>
+
+  <text id="summary">Zusammenfassung</text>
+
+  <text id="work_experience">Beruflicher Werdegang</text>
+  <text id="work_experience_responsible">Verantwortlich: </text>
+  <text id="work_experience_employer">Arbeitgeber: </text>
+  <text id="work_experience_description">Beschreibung: </text>
+  <text id="work_experience_separator">, </text>
+  <text id="work_experience_final">.</text>
+
+  <text id="education">Qualifikation und Ausbildung</text>
+
+  <text id="special_skills">Besondere Fähigkeiten</text>
+
+  <text id="language_skills">Sprachkenntnisse</text>
+
+  <text id="table_mother_tongue">Muttersprache: </text>
+  <text id="table_language">Sprache</text>
+  <text id="table_understanding">Verständnis</text>
+  <text id="table_speaking">Sprechen</text>
+  <text id="table_writing">Schreiben</text>
+  <text id="table_listening">Hören</text>
+  <text id="table_reading">Lesen</text>
+  <text id="table_interaction">Dialog</text>
+  <text id="table_production">Ausdruck</text>
+
+  <text id="mother_tongue">Muttersprache</text>
+  <text id="c2">Bewandert</text>
+  <text id="c1">Fortgeschritten</text>
+  <text id="b2">Stark fortgeschritten</text>
+  <text id="b1">Mäßig fortgeschritten</text>
+  <text id="a2">Wenig fortgeschritten</text>
+  <text id="a1">Anfänger</text>
+
+  <text id="language_table_note">CEFR - Common European Framework of Reference for Languages</text>
+
+  <text id="interests">Interessen</text>
+
+  <text id="publications">Veröffentlichungen</text>
+  <text id="pages">s: </text>
+
+  <text id="computer_knowledge">IT Kenntnisse</text>
+  <text id="years_of_use">Jahre im Einsatz</text>
+  <text id="last_use">Letzter Einsatz</text>
+  <text id="unix">Unix</text>
+  <text id="windows">Windows</text>
+  <text id="user">User</text>
+  <text id="admin">Admin</text>
+  <text id="developer">Developer</text>
+  <text id="consultant">Consultant</text>
+  <text id="self_rating">Selbsteinschätzung</text>
+  <text id="self_rating_range"> (1-10)</text>
+  <text id="now">Gerade</text>
+  <text id="cross">X</text>
+  <text id="dash">-</text>
+  <text id="yes">Ja</text>
+  <text id="no">Nein</text>
+
+  <text id="interval_dash"> - </text>
+  <text id="interval_present">Heute</text>
+
+  <!--
+    %d - day of month (e.g., 01)
+    %m - month (01..12)
+    %b - locale’s abbreviated month name (e.g., Jan)
+    %B - locale’s full month name (e.g., January)
+    %y - last two digits of year (00..99)
+    %Y - year
+  -->
+  <text id="short_date_format">%b %Y</text>
+  <text id="full_date_format">%d. %B %Y</text>
+
+  <text id="date_jan">Jan.</text>
+  <text id="date_feb">Febr.</text>
+  <text id="date_mar">März</text>
+  <text id="date_apr">Apr.</text>
+  <text id="date_may">Mai</text>
+  <text id="date_jun">Juni</text>
+  <text id="date_jul">Juli</text>
+  <text id="date_aug">Aug.</text>
+  <text id="date_sep">Sept.</text>
+  <text id="date_oct">Okt.</text>
+  <text id="date_nov">Nov.</text>
+  <text id="date_dec">Dez.</text>
+
+  <text id="date_full_jan">Januar</text>
+  <text id="date_full_feb">Februar</text>
+  <text id="date_full_mar">März</text>
+  <text id="date_full_apr">April</text>
+  <text id="date_full_may">Mai</text>
+  <text id="date_full_jun">Juni</text>
+  <text id="date_full_jul">Juli</text>
+  <text id="date_full_aug">August</text>
+  <text id="date_full_sep">September</text>
+  <text id="date_full_oct">Oktober</text>
+  <text id="date_full_nov">November</text>
+  <text id="date_full_dec">Dezember</text>
+
+  <text id="date_other">??</text>
+
+  <text id="generated_by">Erstellt mit XMLCV</text>
+</lang_text>

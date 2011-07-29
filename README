@@ -1,0 +1,107 @@
+License
+=======
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+Description
+===========
+
+XMLCV is a multilingual XSL template for creation of a simple structured
+Curriculum Vitae and Colver leter. The output can be either PDF, plain text or
+XHTML. The user does not need to know anything about the design. Everything is
+done automatically by XSL template.
+
+
+Requirements
+============
+
+* XSLT Processor (Saxon-6.5.x, xsltproc, ...)
+* FO Processor (FOP-0.9x, XSL Formatter, ...)
+* XML Syntax Validator (xmllint, jing, ...) = optional
+
+
+Transformation
+==============
+
+Before you start with transformation, it is recomended (but it is not
+necessary) to check if the XML source file have right structure:
+$ xmllint --noout --relaxng ../rng/xmlcv.rng ./cv-en_example.xml
+
+Transformation into XHTML:
+$ saxon -o ./cv-en_example.html ./cv-en_example.xml ../xsl/xmlcv-xhtml.xsl
+
+Transformation into TXT:
+$ saxon -o ./cv-en_example.txt ./cv-en_example.xml ../xsl/xmlcv-txt.xsl
+
+You can also use XSLT Processor in your web browser. Just point your browser
+on ./cv-en_example.xml file and it will show you XHTML page. Supported web
+browsers are Internet Explorer (version >= 7), Mozilla Firefox (version >= 2)
+and Opera (version >= 9.5).
+
+Transformation into PDF or RTF works in two steps. First step is to create
+XSL-FO file:
+$ saxon -o ./cv-en_example.fo ./cv-en_example.xml ../xsl/xmlcv-fo.xsl
+
+If you want, you can even set some parameters:
+$ saxon -o ./cv-en_example.fo ./cv-en_example.xml ../xsl/xmlcv-fo.xsl listitem_indent_width=39 show_footer=no current_year=`date "+%Y"`
+Then you do not have to change the Setting.xsl file. Most useful params are is
+the following:
+ * current_year
+ * show_signature
+ * show_footer (FO only)
+ * css_path (XHTML only)
+ * ck_not_used_color (FO only)
+ * listitem_indent_width (FO only)
+ * listitem_indent_distance (FO only)
+ * listitem_indent_unit (FO only)
+ * listitem_indent_separator_width (FO only)
+ * end_of_line (TXT only)
+ * line_length (TXT only)
+ * title_bullet (TXT only)
+
+Second step is to convert FO file into the desired output file:
+
+Into PDF:
+$ fop -fo ./cv-en_example.fo -pdf cv-en_example.pdf
+
+Into RTF (not fully supported):
+$ fop -fo ./cv-en_example.fo -rtf cv-en_example.rtf
+
+
+Template tuning
+===============
+
+If possible, do not tune xmlcv-fo.xsl file. If you feel like something could be
+done better, please let me know and I will try to add your requirements into
+the template.
+
+For visual part of the template, there is a file Setting.xsl. This file
+contains many attributes which can be changed or even added by yourself.
+For XHTML output, you can tune xmlcv.css file.
+
+
+Localization
+============
+
+Feel free to change or add localization of this template. Take the file
+Lang-en.xml like a reference file. All other language files should contain
+the same number of text item definitions. If you add new localization,
+please send it to me and I will add it to this project.
+
+
+Bugs and updates
+================
+
+Please send bug reports and updates to my e-mail address:
+<jiri[dot]tyr[at]e-learning[dot]tul[dot]cz>

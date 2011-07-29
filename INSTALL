@@ -1,0 +1,29 @@
+For all users:
+==============
+1) Install XSL Processor
+   (e.g. Saxon - http://saxon.sourceforge.net/)
+2) Install FO Processor
+   (e.g. FOP - http://xmlgraphics.apache.org/fop/)
+3) Configure FO Processor
+   (for FOP config see file etc/xml/fop/conf/myfop.xml)
+4) Create your CV or CL
+5) Transform your CV or CL into the output format
+   (for commands see scripts/XMLCV.sh or scripts/XMLCL.sh)
+
+
+For Gentoo Linux users only:
+============================
+
+echo "dev-java/fop hyphenation" >> /etc/portage/package.use
+echo ">dev-java/saxon-6.5.5" >> /etc/portage/package.mask
+
+emerge -av fop saxon
+
+
+Testing:
+===============
+
+tar -xzf xmlcv-0.4.tar.gz
+cd ./xmlcv-0.4/examples
+SRC="./cv-en_example.xml" ../scripts/XMLCV.sh
+SRC="./cl-en_example.xml" ../scripts/XMLCL.sh

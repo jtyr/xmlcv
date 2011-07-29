@@ -1,0 +1,260 @@
+/*
+ **********************************************************
+ ** Description: CSS stylesheet for XMLCV
+ **
+ ** (c) Jiri Tyr 2008-2011
+ **********************************************************
+ */
+
+
+body {
+	font-family: "Arial CE", "Helvetica CE", Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	color: black;
+	background-color: gray;
+	margin: 0;
+	padding: 10px;
+}
+
+body[class] #Page {
+	width: auto;
+}
+
+/* ------------------------------------------------------ */
+
+a {
+	color: black;
+	text-decoration: underline;
+	background-color: inherit;
+}
+
+a:hover {
+	color: blue;
+	text-decoration: none;
+	background-color: inherit;
+}
+
+/* ------------------------------------------------------ */
+
+#Page {
+	width: 170mm;
+	min-width: 170mm;
+	max-width: 170mm;
+	margin: 0 auto;
+	text-align: left;
+	border: 2px solid silver;
+	padding: 20mm;
+	background-color: white;
+}
+
+/* ------------------------------------------------------ */
+
+.table {
+	margin-bottom: 12pt;
+	border: 1px solid black;
+	font-size: 10pt;
+	text-align: center;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table_column {
+}
+
+/* table_header_cell */
+.table th {
+	border-bottom: 1px solid black;
+	background-color: #e6e6e6;
+	font-weight: bold;
+	border-right: 1px solid black;
+}
+
+/* table_body_cell */
+.table td {
+	border-right: 1px solid black;
+	border-bottom: 1px solid #c0c0c0;
+}
+
+/* ------------------------------------------------------ */
+
+.interval_table {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.interval_separator {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.interval_side_cell {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 46%;
+	white-space: nowrap;
+	text-align: left;
+}
+
+/* ------------------------------------------------------ */
+
+.list_block {
+	width:100%;
+	border-collapse: collapse;
+}
+
+.list_item_label {
+	width: 125px;
+	vertical-align: top;
+}
+
+.list_item_body {
+	text-align: justify;
+}
+
+/* ------------------------------------------------------ */
+
+.section {
+	padding-bottom: 12pt;
+}
+
+.section_title {
+	font-weight: bold;
+	font-style: italic;
+	font-size: 12pt;
+	padding-bottom: 2pt;
+}
+
+/* ------------------------------------------------------ */
+
+.cv_title {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 12pt;
+}
+
+#personal {
+	width: 60mm;
+	position: relative;
+}
+
+.personal_table {
+	width: 100%;
+	border-spacing: 0;
+	padding-bottom: 24pt;
+}
+
+.personal_table_cell_label {
+	color: #656565;
+	text-align: right;
+	font-style: italic;
+	padding-right: 1mm;
+	vertical-align: top;
+}
+
+.personal_table_cell_text {
+	vertical-align: top;
+}
+
+.personal_photo_cell {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.personal_photo_graphic {
+	border: 2px solid silver;
+}
+
+.text_block {
+	text-align: justify;
+}
+
+.text_description-nth {
+	vertical-align: text-top;
+	font-size: 70%;
+}
+
+.experience_block {
+	text-align: justify;
+	padding-bottom: 5pt;
+}
+
+.experience_title {
+	text-align: justify;
+}
+
+.experience_employer {
+	font-size: 8pt;
+	text-align: justify;
+}
+
+.experience_description {
+	color: #656565;
+	font-size: 10pt;
+	text-align: justify;
+}
+
+.experience_keys {
+	color: #B5B5B5;
+	font-size: 8pt;
+	text-align: justify;
+}
+
+.education_block {
+	margin-bottom: 0pt;
+}
+
+.signature_padding_top {
+	padding-top: 1cm;
+}
+
+.signature_line {
+	width: 5cm;
+	border-top: 1px dashed black;
+	font-size: 10pt;
+	text-align: center;
+	float: right;
+	padding-top: 1mm;
+}
+
+.publications_block {
+	text-align: justify;
+}
+
+.publication_title {
+	font-style: italic;
+}
+
+/* ------------------------------------------------------ */
+
+.generated_by {
+	text-align: center;
+}
+
+.generated_by a {
+	color: silver;
+	font-size: 8pt;
+	text-decoration: none;
+}
+
+.generated_by a:hover {
+	color: blue;
+	text-decoration: underline;
+}
+
+/* ------------------------------------------------------ */
+
+.language_table_note {
+	font-size: 6pt;
+	text-align: right;
+	padding: 2px 0 12pt 0;
+}
+
+/* ------------------------------------------------------ */

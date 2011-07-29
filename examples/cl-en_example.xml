@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../../xmlcv-0.4/xsl/xmlcl-xhtml.xsl"?>
+
+<!DOCTYPE xsl:stylesheet [
+  <!-- entities used in this document - necessary for Firefox -->
+  <!-- if you are missing some entity, just add it from external entities files -->
+  <!ENTITY sect		"&#x00A7;">
+  <!ENTITY rdquor	"&#x201C;">
+  <!ENTITY ldquor	"&#x201E;">
+
+  <!-- external entities - doesn't work in Firefox -->
+  <!ENTITY % iso-lat1 SYSTEM "../../xmlcv/xsl/ent/iso-lat1.ent">
+  %iso-lat1;
+  <!ENTITY % iso-num  SYSTEM "../../xmlcv/xsl/ent/iso-num.ent">
+  %iso-num;
+  <!ENTITY % iso-pub  SYSTEM "../../xmlcv/xsl/ent/iso-pub.ent">
+  %iso-pub;
+]>
+
+
+<!-- mandatory attribute lang="string" -->
+<!-- optional attribute css-path="string" -->
+<!-- optional attribute show-title="[YES|no]" -->
+<cl lang="en" css-path="../../xmlcv/css">
+  <personal>
+    <name>
+      <firstname>John</firstname>
+      <!-- optional -->
+      <middlename>Peter</middlename>
+      <lastname>Doe</lastname>
+    </name>
+    <address>
+      <!-- optional -->
+      <residence>Some residence</residence>
+      <street>Some street 123</street>
+      <city>Some city</city>
+      <postcode>12345</postcode>
+      <!-- optional -->
+      <country>Some country</country>
+    </address>
+    <telephone>+123 456 789 000</telephone>
+    <email>name@site.com</email>
+  </personal>
+
+  <recipients>
+    <!-- can be multiple -->
+    <recipient id="aaa">
+      <name>AAA Ltd.</name>
+      <street>Some street 987</street>
+      <city>Some city</city>
+      <postcode>98765</postcode>
+      <country>Some country</country>
+      <job-listing>www.somepage.com</job-listing>
+    </recipient>
+  </recipients>
+
+  <text>
+    <!-- can be multiple -->
+    <!-- can contain <post>, <job-listing>, <a>, <b>, <i>, <u> and <nth> elements -->
+    <!-- optional attribute: role="string1 string2" -->
+    <p>I am applying for the position of <b><post/></b> with your company as advertised on <b><job-listing/></b> job listings. This position seems ideal for my experience, education, skills, and career interests and I am eager to contribute my enthusiasm and teamwork to your company.</p>
+
+    <p>Here talk about your skills...</p>
+    <p>Please consult my enclosed CV for further details about my work experience, education and skills. I am confident that my education together with my extensive experience can be an asset to your company. I look forward to hearing from you and having the opportunity to discuss this position further in an interview.</p>
+  </text>
+</cl>

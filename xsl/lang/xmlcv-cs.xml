@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  **********************************************************
+  ** Description: Czech texts for XMLCV
+  **
+  ** (c) Jiri Tyr 2008-2011
+  **********************************************************
+  -->
+
+
+<lang_text>
+  <text id="cv">CURRICULUM VITAE</text>
+
+  <text id="of"> - </text>
+  <text id="page_number">Strana </text>
+  <text id="page_of"> z </text>
+
+  <text id="personal_name">Jméno:</text>
+  <text id="personal_address">Adresa:</text>
+  <text id="personal_telephone">Telefon::</text>
+  <text id="personal_telephone_private">Soukromý telefon:</text>
+  <text id="personal_telephone_office">Pracovní telefon:</text>
+  <text id="personal_mobile">Mobil:</text>
+  <text id="personal_mobile_private">Soukromý mobil:</text>
+  <text id="personal_mobile_office">Pracovní mobil:</text>
+  <text id="personal_fax">Fax:</text>
+  <text id="personal_fax_private">Soukromý fax:</text>
+  <text id="personal_fax_office">Pracovní fax:</text>
+  <text id="personal_email">E-mail:</text>
+  <text id="personal_homepage">Domovská stránka:</text>
+  <text id="personal_pgpid">ID PGP klíč:</text>
+  <text id="personal_nationality">Národnost:</text>
+  <text id="personal_birthday">Datum narození:</text>
+  <text id="personal_age">Věk:</text>
+  <text id="personal_gender">Pohlaví:</text>
+  <text id="personal_gender_male">mužské</text>
+  <text id="personal_gender_female">ženské</text>
+  <text id="personal_merital_status">Stav:</text>
+
+  <text id="summary">Summary</text>
+
+  <text id="work_experience">Pracovní zkušenosti</text>
+  <text id="work_experience_responsible">Vedoucí: </text>
+  <text id="work_experience_employer">Zaměstnavatel: </text>
+  <text id="work_experience_description">Popis: </text>
+  <text id="work_experience_separator">, </text>
+  <text id="work_experience_final">.</text>
+
+  <text id="education">Vzdělání</text>
+
+  <text id="special_skills">Speciální odbornost</text>
+
+  <text id="language_skills">Jazykové znalosti</text>
+
+  <text id="table_mother_tongue">Rodný jazyk: </text>
+  <text id="table_language">Jazyk</text>
+  <text id="table_understanding">Porozumění</text>
+  <text id="table_speaking">Mluvení</text>
+  <text id="table_writing">Psaní</text>
+  <text id="table_listening">Poslech</text>
+  <text id="table_reading">Čtení</text>
+  <text id="table_interaction">Interakce</text>
+  <text id="table_production">Produkce</text>
+
+  <text id="mother_tongue">Rodný jazyk</text>
+  <text id="c2">Pokročilý</text>
+  <text id="c1">Více pokročilý</text>
+  <text id="b2">Středně pokročilý</text>
+  <text id="b1">Mírně pokročilý</text>
+  <text id="a2">Pokročilý začátečník</text>
+  <text id="a1">Začátečník</text>
+
+  <text id="language_table_note">CEFR - Společný evropský referenční rámec pro jazyky</text>
+
+  <text id="interests">Zájmy</text>
+
+  <text id="publications">Publikace</text>
+  <text id="pages">s: </text>
+
+  <text id="computer_knowledge">Počítačové znalosti</text>
+  <text id="years_of_use">Let používáno</text>
+  <text id="last_use">Naposledy</text>
+  <text id="unix">Unix</text>
+  <text id="windows">Windows</text>
+  <text id="user">Uživatel</text>
+  <text id="admin">Admin</text>
+  <text id="developer">Vývojář</text>
+  <text id="consultant">Konzultant</text>
+  <text id="self_rating">Sebehodnocení</text>
+  <text id="self_rating_range"> (1-10)</text>
+  <text id="now">Nyní</text>
+  <text id="cross">X</text>
+  <text id="dash">-</text>
+  <text id="yes">Ano</text>
+  <text id="no">Ne</text>
+
+  <text id="interval_dash"> - </text>
+  <text id="interval_present">Nyní</text>
+
+  <!--
+    %d - day of month (e.g., 01)
+    %m - month (01..12)
+    %b - locale’s abbreviated month name (e.g., Jan)
+    %B - locale’s full month name (e.g., January)
+    %y - last two digits of year (00..99)
+    %Y - year
+  -->
+  <text id="short_date_format">%m/%Y</text>
+  <text id="full_date_format">%d. %B %Y</text>
+
+  <text id="date_jan">led</text>
+  <text id="date_feb">úno</text>
+  <text id="date_mar">bře</text>
+  <text id="date_apr">dub</text>
+  <text id="date_may">kvě</text>
+  <text id="date_jun">čen</text>
+  <text id="date_jul">čec</text>
+  <text id="date_aug">srp</text>
+  <text id="date_sep">zář</text>
+  <text id="date_oct">říj</text>
+  <text id="date_nov">lis</text>
+  <text id="date_dec">pro</text>
+
+  <text id="date_full_jan">leden</text>
+  <text id="date_full_feb">únor</text>
+  <text id="date_full_mar">březen</text>
+  <text id="date_full_apr">duben</text>
+  <text id="date_full_may">květen</text>
+  <text id="date_full_jun">červen</text>
+  <text id="date_full_jul">červenec</text>
+  <text id="date_full_aug">srpen</text>
+  <text id="date_full_sep">září</text>
+  <text id="date_full_oct">říjen</text>
+  <text id="date_full_nov">listopad</text>
+  <text id="date_full_dec">prosinec</text>
+
+  <text id="date_other">??</text>
+
+  <text id="generated_by">Vztvořeno v XMLCV</text>
+</lang_text>

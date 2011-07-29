@@ -1,0 +1,1112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  **********************************************************
+  ** Description: RELAX-NG scheme for validation of
+  **              XMLCV data source file
+  **
+  ** (c) Jiri Tyr 2008-2011
+  **********************************************************
+  -->
+
+
+<element name="cv" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <interleave>
+    <attribute name="lang">
+      <data type="language">
+        <param name="minLength">2</param>
+        <param name="maxLength">3</param>
+      </data>
+    </attribute>
+    <optional>
+      <attribute name="css-path">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="break-after">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show">
+        <choice>
+          <value>yes</value>
+          <value>no</value>
+        </choice>
+      </attribute>
+    </optional>
+  </interleave>
+
+
+  <element name="personal">
+    <interleave>
+      <optional>
+        <attribute name="photo-url">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="photo-height">
+        <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="break-after">
+          <choice>
+            <value>yes</value>
+            <value>no</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="show">
+          <choice>
+            <value>yes</value>
+            <value>no</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+
+    <interleave>
+      <element name="name">
+        <element name="firstname">
+          <data type="string"/>
+        </element>
+        <optional>
+          <element name="middlename">
+            <data type="string"/>
+          </element>
+        </optional>
+        <element name="lastname">
+          <data type="string"/>
+        </element>
+      </element>
+      <element name="address">
+        <optional>
+          <element name="residence">
+            <data type="string"/>
+          </element>
+        </optional>
+        <element name="street">
+          <data type="string"/>
+        </element>
+        <element name="city">
+          <data type="string"/>
+        </element>
+        <element name="postcode">
+          <data type="string"/>
+        </element>
+        <optional>
+          <element name="country">
+            <data type="string"/>
+          </element>
+        </optional>
+      </element>
+      <oneOrMore>
+        <element name="telephone">
+          <optional>
+            <attribute name="mobile">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="type">
+              <choice>
+                <value>private</value>
+                <value>office</value>
+              </choice>
+            </attribute>
+          </optional>
+          <data type="string"/>
+        </element>
+      </oneOrMore>
+      <zeroOrMore>
+        <optional>
+          <element name="fax">
+            <optional>
+              <attribute name="type">
+                <choice>
+                  <value>private</value>
+                  <value>office</value>
+                </choice>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+        </optional>
+      </zeroOrMore>
+      <element name="email">
+        <data type="string">
+          <param name="pattern">[\-_.a-zA-Z0-9]+@[\-_.a-zA-Z0-9]+\.[a-zA-Z]{2,}</param>
+        </data>
+      </element>
+      <optional>
+        <element name="pgp-id">
+          <data type="string">
+            <param name="pattern">0x[a-zA-Z0-9]{8}</param>
+          </data>
+        </element>
+      </optional>
+      <zeroOrMore>
+        <element name="im">
+          <attribute name="type">
+            <data type="string"/>
+          </attribute>
+          <data type="string"/>
+        </element>
+      </zeroOrMore>
+      <optional>
+        <element name="homepage">
+          <data type="anyURI"/>
+        </element>
+      </optional>
+      <optional>
+        <element name="nationality">
+          <data type="string"/>
+        </element>
+      </optional>
+      <optional>
+        <element name="birthday">
+          <data type="string">
+            <param name="pattern">\d{1,2}/\d{1,2}/\d{4}</param>
+          </data>
+        </element>
+      </optional>
+      <optional>
+        <element name="gender">
+          <attribute name="type">
+            <choice>
+              <value>m</value>
+              <value>f</value>
+            </choice>
+          </attribute>
+        </element>
+      </optional>
+      <optional>
+        <element name="status">
+          <data type="string"/>
+        </element>
+      </optional>
+      <optional>
+        <element name="age">
+          <data type="integer"/>
+        </element>
+      </optional>
+    </interleave>
+  </element>
+
+
+  <interleave>
+
+    <optional>
+      <oneOrMore>
+        <element name="text-block">
+          <optional>
+            <attribute name="break-after">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="show">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
+          <element name="title">
+            <optional>
+              <attribute name="id">
+                <data type="string"/>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+          <element name="text">
+            <text/>
+          </element>
+        </element>
+      </oneOrMore>
+    </optional>
+
+
+    <zeroOrMore>
+      <element name="work-experience">
+        <optional>
+          <attribute name="show-description">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="show">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="break-after">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <element name="title">
+            <optional>
+              <attribute name="id">
+                <data type="string"/>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+        </optional>
+        <oneOrMore>
+          <element name="experience">
+            <element name="interval">
+              <element name="start">
+                <data type="string">
+                  <param name="pattern">\d{2}/\d{4}</param>
+                </data>
+              </element>
+              <optional>
+                <element name="end">
+                  <data type="string">
+                    <param name="pattern">\d{2}/\d{4}</param>
+                  </data>
+                </element>
+              </optional>
+            </element>
+            <oneOrMore>
+              <element name="title">
+                <optional>
+                  <attribute name="role">
+                    <data type="string"/>
+                  </attribute>
+                </optional>
+                <data type="string"/>
+              </element>
+            </oneOrMore>
+            <optional>
+              <oneOrMore>
+                <element name="description">
+                  <optional>
+                    <attribute name="role">
+                      <data type="string"/>
+                    </attribute>
+                  </optional>
+                  <text/>
+                </element>
+              </oneOrMore>
+            </optional>
+            <optional>
+              <element name="employer">
+                <group>
+                  <optional>
+                    <element name="person">
+                      <data type="string"/>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="email">
+                      <data type="string">
+                        <param name="pattern">[\-_.a-zA-Z0-9]+@[\-_.a-zA-Z0-9]+\.[a-zA-Z]{2,}</param>
+                      </data>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="department">
+                      <data type="string"/>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="institute">
+                      <data type="string"/>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="address">
+                      <interleave>
+                        <optional>
+                          <element name="street">
+                            <data type="string"/>
+                          </element>
+                        </optional>
+                        <optional>
+                          <element name="city">
+                            <data type="string"/>
+                          </element>
+                        </optional>
+                        <optional>
+                          <element name="postcode">
+                            <data type="string"/>
+                          </element>
+                        </optional>
+                        <optional>
+                          <element name="country">
+                            <data type="string"/>
+                          </element>
+                        </optional>
+                      </interleave>
+                    </element>
+                  </optional>
+                </group>
+              </element>
+            </optional>
+          </element>
+        </oneOrMore>
+      </element>
+    </zeroOrMore>
+
+
+    <optional>
+      <oneOrMore>
+        <element name="education">
+          <optional>
+            <attribute name="break-after">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="show">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
+          <optional>
+            <element name="title">
+              <optional>
+                <attribute name="id">
+                  <data type="string"/>
+                </attribute>
+              </optional>
+              <data type="string"/>
+            </element>
+          </optional>
+          <oneOrMore>
+            <element name="edu">
+              <element name="interval">
+                <element name="start">
+                  <data type="string">
+                    <param name="pattern">\d{2}/\d{4}</param>
+                  </data>
+                </element>
+                <optional>
+                  <element name="end">
+                    <data type="string">
+                      <param name="pattern">\d{2}/\d{4}</param>
+                    </data>
+                  </element>
+                </optional>
+              </element>
+              <oneOrMore>
+                <element name="title">
+                  <optional>
+                    <attribute name="role">
+                      <data type="string"/>
+                    </attribute>
+                  </optional>
+                  <data type="string"/>
+                </element>
+              </oneOrMore>
+              <optional>
+                <element name="institute">
+                  <optional>
+                    <element name="name">
+                      <data type="string"/>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="department">
+                      <data type="string"/>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="city">
+                      <data type="string"/>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="country">
+                      <data type="string"/>
+                    </element>
+                  </optional>
+                </element>
+              </optional>
+            </element>
+          </oneOrMore>
+        </element>
+      </oneOrMore>
+    </optional>
+
+
+    <optional>
+      <oneOrMore>
+        <element name="skills">
+          <optional>
+            <attribute name="break-after">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="show">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
+          <optional>
+            <element name="title">
+              <optional>
+                <attribute name="id">
+                  <data type="string"/>
+                </attribute>
+              </optional>
+              <data type="string"/>
+            </element>
+          </optional>
+          <oneOrMore>
+            <element name="skill">
+              <element name="date">
+                <data type="string">
+                  <param name="pattern">\d{2}/\d{4}</param>
+                </data>
+              </element>
+              <oneOrMore>
+                <element name="title">
+                  <optional>
+                    <attribute name="role">
+                      <data type="string"/>
+                    </attribute>
+                  </optional>
+                  <data type="string"/>
+                </element>
+              </oneOrMore>
+            </element>
+          </oneOrMore>
+        </element>
+      </oneOrMore>
+    </optional>
+
+
+    <optional>
+      <element name="language-table">
+        <optional>
+          <attribute name="break-after">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="show">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <element name="title">
+            <optional>
+              <attribute name="id">
+                <data type="string"/>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+        </optional>
+        <oneOrMore>
+          <element name="language">
+            <optional>
+              <attribute name="mother-tongue">
+                <choice>
+                  <value>yes</value>
+                  <value>no</value>
+                </choice>
+              </attribute>
+            </optional>
+            <element name="lang">
+              <data type="string"/>
+            </element>
+            <optional>
+              <element name="understanding">
+                <element name="listening">
+                  <data type="integer">
+                    <param name="minInclusive">1</param>
+                    <param name="maxInclusive">6</param>
+                  </data>
+                </element>
+                <element name="reading">
+                  <data type="integer">
+                    <param name="minInclusive">1</param>
+                    <param name="maxInclusive">6</param>
+                  </data>
+                </element>
+              </element>
+              <element name="speaking">
+                <element name="interaction">
+                  <data type="integer">
+                    <param name="minInclusive">1</param>
+                    <param name="maxInclusive">6</param>
+                  </data>
+                </element>
+                <element name="production">
+                  <data type="integer">
+                    <param name="minInclusive">1</param>
+                    <param name="maxInclusive">6</param>
+                  </data>
+                </element>
+              </element>
+              <element name="writing">
+                <data type="integer">
+                  <param name="minInclusive">1</param>
+                  <param name="maxInclusive">6</param>
+                </data>
+              </element>
+            </optional>
+          </element>
+        </oneOrMore>
+      </element>
+    </optional>
+
+
+    <optional>
+      <element name="language-list">
+        <optional>
+          <attribute name="break-after">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="show">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <element name="title">
+            <optional>
+              <attribute name="id">
+                <data type="string"/>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+        </optional>
+        <oneOrMore>
+          <element name="language">
+            <optional>
+              <attribute name="mother-tongue">
+                <choice>
+                  <value>yes</value>
+                  <value>no</value>
+                </choice>
+              </attribute>
+            </optional>
+            <element name="lang">
+              <data type="string"/>
+            </element>
+            <optional>
+              <element name="level">
+                <data type="integer">
+                  <param name="minInclusive">1</param>
+                  <param name="maxInclusive">6</param>
+                </data>
+              </element>
+            </optional>
+          </element>
+        </oneOrMore>
+      </element>
+    </optional>
+
+
+    <optional>
+      <oneOrMore>
+        <element name="list">
+          <interleave>
+            <optional>
+              <attribute name="break-after">
+                <choice>
+                  <value>yes</value>
+                  <value>no</value>
+                </choice>
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="show">
+                <choice>
+                  <value>yes</value>
+                  <value>no</value>
+                </choice>
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="sort">
+                <choice>
+                  <value>yes</value>
+                  <value>no</value>
+                </choice>
+              </attribute>
+            </optional>
+          </interleave>
+          <element name="title">
+            <optional>
+              <attribute name="id">
+                <data type="string"/>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+          <oneOrMore>
+            <element name="item">
+              <data type="string"/>
+            </element>
+          </oneOrMore>
+        </element>
+      </oneOrMore>
+    </optional>
+
+    <optional>
+      <element name="signature">
+        <optional>
+          <attribute name="break-after">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="show">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <empty/>
+      </element>
+    </optional>
+
+    <optional>
+      <element name="publications">
+        <optional>
+          <attribute name="break-after">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="show">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <element name="title">
+            <optional>
+              <attribute name="id">
+                <data type="string"/>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+        </optional>
+        <oneOrMore>
+          <element name="publ">
+            <choice>
+              <element name="author">
+                <element name="firstname">
+                  <data type="string"/>
+                </element>
+                <optional>
+                  <element name="middlename">
+                    <data type="string"/>
+                  </element>
+                </optional>
+                <element name="lastname">
+                  <data type="string"/>
+                </element>
+              </element>
+              <element name="authors">
+                <oneOrMore>
+                  <element name="author">
+                    <element name="firstname">
+                      <data type="string"/>
+                    </element>
+                    <optional>
+                      <element name="middlename">
+                        <data type="string"/>
+                      </element>
+                    </optional>
+                    <element name="lastname">
+                      <data type="string"/>
+                    </element>
+                  </element>
+                </oneOrMore>
+              </element>
+            </choice>
+            <element name="title">
+              <data type="string"/>
+            </element>
+            <optional>
+              <element name="event">
+                <data type="string"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="department">
+                <data type="string"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="institut">
+                <data type="string"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="city">
+                <data type="string"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="country">
+                <data type="string"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="date">
+                <data type="string">
+                  <param name="pattern">\d{1,2}\.\d{1,2}\.\d{4}</param>
+                </data>
+              </element>
+            </optional>
+            <optional>
+              <element name="url">
+                <data type="anyURI"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="isbn">
+                <data type="string">
+                  <param name="minLength">1</param>
+                  <param name="maxLength">20</param>
+                </data>
+              </element>
+            </optional>
+            <optional>
+              <element name="issn">
+                <data type="string">
+                  <param name="minLength">1</param>
+                  <param name="maxLength">20</param>
+                </data>
+              </element>
+            </optional>
+            <optional>
+              <element name="pages">
+                <data type="string">
+                  <param name="minLength">1</param>
+                  <param name="maxLength">10</param>
+                </data>
+              </element>
+            </optional>
+          </element>
+        </oneOrMore>
+      </element>
+    </optional>
+
+
+    <optional>
+      <element name="computer-knowledge">
+        <optional>
+          <attribute name="break-after">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="show">
+            <choice>
+              <value>yes</value>
+              <value>no</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <element name="title">
+            <optional>
+              <attribute name="id">
+                <data type="string"/>
+              </attribute>
+            </optional>
+            <data type="string"/>
+          </element>
+        </optional>
+
+        <oneOrMore>
+          <optional>
+            <element name="table">
+              <attribute name="type">
+                <data type="string">
+                  <param name="pattern">1</param>
+                </data>
+              </attribute>
+              <element name="title">
+                <data type="string"/>
+              </element>
+              <oneOrMore>
+                <element name="row">
+                  <element name="name">
+                    <data type="string"/>
+                  </element>
+                  <element name="interval">
+                    <element name="start">
+                      <data type="string">
+                        <param name="pattern">\d{4}</param>
+                      </data>
+                    </element>
+                    <optional>
+                      <element name="end">
+                        <data type="string">
+                          <param name="pattern">\d{4}</param>
+                        </data>
+                      </element>
+                    </optional>
+                  </element>
+                  <optional>
+                    <element name="unix">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="windows">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <element name="rating">
+                    <data type="integer">
+                      <param name="minInclusive">1</param>
+                      <param name="maxInclusive">10</param>
+                    </data>
+                  </element>
+                </element>
+              </oneOrMore>
+            </element>
+          </optional>
+
+          <optional>
+            <element name="table">
+              <attribute name="type">
+                <data type="string">
+                  <param name="pattern">2</param>
+                </data>
+              </attribute>
+              <element name="title">
+                <data type="string"/>
+              </element>
+              <oneOrMore>
+                <element name="row">
+                  <element name="name">
+                    <data type="string"/>
+                  </element>
+                  <element name="interval">
+                    <element name="start">
+                      <data type="string">
+                        <param name="pattern">\d{4}</param>
+                      </data>
+                    </element>
+                    <optional>
+                      <element name="end">
+                        <data type="string">
+                          <param name="pattern">\d{4}</param>
+                        </data>
+                      </element>
+                    </optional>
+                  </element>
+                  <optional>
+                    <element name="user">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="admin">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="developer">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <element name="rating">
+                    <data type="integer">
+                      <param name="minInclusive">1</param>
+                      <param name="maxInclusive">10</param>
+                    </data>
+                  </element>
+                </element>
+              </oneOrMore>
+            </element>
+          </optional>
+
+          <optional>
+            <element name="table">
+              <attribute name="type">
+                <data type="string">
+                  <param name="pattern">3</param>
+                </data>
+              </attribute>
+              <element name="title">
+                <data type="string"/>
+              </element>
+              <oneOrMore>
+                <element name="row">
+                  <element name="name">
+                    <data type="string"/>
+                  </element>
+                  <element name="interval">
+                    <element name="start">
+                      <data type="string">
+                        <param name="pattern">\d{4}</param>
+                      </data>
+                    </element>
+                    <optional>
+                      <element name="end">
+                        <data type="string">
+                          <param name="pattern">\d{4}</param>
+                        </data>
+                      </element>
+                    </optional>
+                  </element>
+                  <optional>
+                    <element name="consultant">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="admin">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="developer">
+                      <choice>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                  </optional>
+                  <element name="rating">
+                    <data type="integer">
+                      <param name="minInclusive">1</param>
+                      <param name="maxInclusive">10</param>
+                    </data>
+                  </element>
+                </element>
+              </oneOrMore>
+            </element>
+          </optional>
+
+          <optional>
+            <element name="table">
+              <attribute name="type">
+                <data type="string">
+                  <param name="pattern">[45]</param>
+                </data>
+              </attribute>
+              <element name="title">
+                <data type="string"/>
+              </element>
+              <oneOrMore>
+                <element name="row">
+                  <element name="name">
+                    <data type="string"/>
+                  </element>
+                  <element name="interval">
+                    <element name="start">
+                      <data type="string">
+                        <param name="pattern">\d{4}</param>
+                      </data>
+                    </element>
+                    <optional>
+                      <element name="end">
+                        <data type="string">
+                          <param name="pattern">\d{4}</param>
+                        </data>
+                      </element>
+                    </optional>
+                  </element>
+                  <element name="rating">
+                    <data type="integer">
+                      <param name="minInclusive">1</param>
+                      <param name="maxInclusive">10</param>
+                    </data>
+                  </element>
+                </element>
+              </oneOrMore>
+            </element>
+          </optional>
+        </oneOrMore>
+      </element>
+    </optional>
+
+  </interleave>
+
+</element>

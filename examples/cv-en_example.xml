@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../../xmlcv-0.4/xsl/xmlcv-xhtml.xsl"?>
+
+
+<!--
+  **********************************************************
+  ** Description: XMLCV example
+  **
+  ** (c) Jiri Tyr 2008-2011
+  **********************************************************
+  -->
+
+
+<!DOCTYPE xsl:stylesheet [
+  <!-- entities used in this document - necessary for Firefox -->
+  <!-- if you are missing some entity, just add it from external entities files -->
+  <!ENTITY sect		"&#x00A7;">
+  <!ENTITY rdquor	"&#x201C;">
+  <!ENTITY ldquor	"&#x201E;">
+
+  <!-- external entities - doesn't work in Firefox -->
+  <!ENTITY % iso-lat1 SYSTEM "../xsl/ent/iso-lat1.ent">
+  %iso-lat1;
+  <!ENTITY % iso-num  SYSTEM "../xsl/ent/iso-num.ent">
+  %iso-num;
+  <!ENTITY % iso-pub  SYSTEM "../xsl/ent/iso-pub.ent">
+  %iso-pub;
+]>
+
+
+<!-- mandatory attribute lang="string" -->
+<!-- optional attribute css-path="string" -->
+<!-- optional attribute show-title="[YES|no]" -->
+<cv lang="en" css-path="../css">
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <!-- optional attribute: photo-url="[absolute path|relative path to the directory where is executed FO Processor]" -->
+  <!-- optional attribute: photo-height="[size in pixels]" -->
+  <personal photo-url="./photo.png">
+    <name>
+      <firstname>John</firstname>
+      <!-- optional -->
+      <middlename>Peter</middlename>
+      <lastname>Doe</lastname>
+    </name>
+    <address>
+      <!-- optional -->
+      <residence>Some residence</residence>
+      <street>Some street</street>
+      <city>Some city</city>
+      <postcode>12345</postcode>
+      <!-- optional -->
+      <country>Some country</country>
+    </address>
+    <!-- optional attribute: mobile="[yes|NO]" -->
+    <!-- optional attribute: type="[private|office]" -->
+    <!-- can be multiple -->
+    <telephone>+123 456 789 000</telephone>
+    <!-- optional -->
+    <!-- can be multiple -->
+    <!-- optional attribute: type="[private|office]" -->
+    <!--
+    <fax>+123 456 789 002</fax>
+    -->
+    <email>name@site.com</email>
+    <!-- optional -->
+    <!--
+    <pgp-id>0x12345678</pgp-id>
+    -->
+    <!-- optional -->
+    <!-- can be multiple -->
+    <!-- attribute type="[ICQ|MSN|Jabber|AIM|Yahoo!|Skype|...]" -->
+    <im type="ICQ">123456789</im>
+    <!-- optional -->
+    <homepage>http://xmlcv.sourceforge.net</homepage>
+    <!-- optional -->
+    <nationality>Some nationality</nationality>
+    <!-- optional -->
+    <birthday>01/01/1970</birthday>
+    <!-- optional -->
+    <!-- attribute type="[m|f]" -->
+    <gender type="m"/>
+    <!-- optional -->
+    <status>Married</status>
+  </personal>
+
+  <!-- all the other blocks can be in different order -->
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <text-block>
+    <!-- can be multiple (with different role attribute) -->
+    <!-- optional attribute: role="string" -->
+    <!-- optional attribute: id="[summary|...]" -->
+    <title role="cv1">Summary 1</title>
+    <title>Summary</title>
+    <!-- can be multiple (with different role attribute) -->
+    <!-- optional attribute: role="string" -->
+    <text>
+      Some text is here....
+    </text>
+  </text-block>
+
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <!-- optional attribute: show-desription="[yes|NO]" -->
+  <work-experience show-description="yes">
+    <!-- optional -->
+    <!-- optional attribute: id="[work_experience|...]" -->
+    <!--
+    <title>Work experience</title>
+    -->
+    <!-- can be multiple -->
+    <experience>
+      <interval>
+        <start>11/2005</start>
+        <!-- optional -->
+        <end>12/2006</end>
+      </interval>
+      <!-- can be multiple (with different role attribute) -->
+      <!-- optional attribute: role="string" -->
+      <title>Title of the experience</title>
+      <!-- optional -->
+      <!-- can be multiple (with different role attribute) -->
+      <!-- optional attribute: role="string" -->
+      <description>Description of the experience is here... asdf asdfasd fasdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf sdfasdf asdf asdf asdf asdf asdf asdfasf asdf asdfasdf.</description>
+      <!-- optional -->
+      <!-- optional attribute: title="string" -->
+      <!-- optional attribute: sort="[YES|no]" -->
+      <keys>
+        <!-- can be multiple -->
+        <key>skill1</key>
+      </keys>
+      <!-- optional -->
+      <!-- must have this order -->
+      <employer>
+        <!-- optional -->
+        <person>John Smith</person>
+        <!-- optional -->
+        <email>john.smith@something.com</email>
+        <!-- optional -->
+        <department>Name of the department</department>
+        <!-- optional -->
+        <institute>Name of the company</institute>
+        <!-- optional -->
+        <address>
+          <!-- optional -->
+          <street>Some street</street>
+          <!-- optional -->
+          <city>Some city</city>
+          <!-- optional -->
+          <postcode>123456</postcode>
+          <!-- optional -->
+          <country>Some country</country>
+        </address>
+      </employer>
+    </experience>
+  </work-experience>
+
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <education>
+    <!-- optional -->
+    <!-- optional attribute: id="[education|...]" -->
+    <!--
+    <title>Education</title>
+    -->
+    <!-- can be multiple -->
+    <edu>
+      <interval>
+        <start>09/1988</start>
+        <!-- optional -->
+        <end>06/1992</end>
+      </interval>
+      <!-- can be multiple (with different role attribute) -->
+      <!-- optional attribute: role="string" -->
+      <title>Master degree in some field</title>
+      <!-- optional -->
+      <institute>
+        <!-- optional -->
+        <name>Some University</name>
+        <!-- optional -->
+        <department>Some department</department>
+        <!-- optional -->
+        <city>Some city</city>
+        <!-- optional -->
+        <country>Some country</country>
+      </institute>
+    </edu>
+  </education>
+
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <skills>
+    <!-- optional -->
+    <!-- optional attribute: id="[special_skills|...]" -->
+    <!--
+    <title>Special skills</title>
+    -->
+    <!-- can be multiple -->
+    <skill>
+      <date>02/1988</date>
+      <!-- can be multiple (with different role attribute) -->
+      <!-- optional attribute: role="string" -->
+      <title>Driving license</title>
+    </skill>
+  </skills>
+
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <language-table>
+    <!-- optional -->
+    <!-- optional attribute: id="[language_skills|...]" -->
+    <title>Languages skills (CEFR)</title>
+    <!--
+    1 - Proficient
+    2 - Advanced
+    3 - Upper intermediate
+    4 - Intermediate
+    5 - Pre-intermediate
+    6 - Beginner
+    -->
+    <!-- can be multiple -->
+    <!-- optional attribute mother-tongue="[YES|no]" -->
+    <language>
+      <lang>French</lang>
+      <understanding>
+        <listening>6</listening>
+        <reading>5</reading>
+      </understanding>
+      <speaking>
+        <interaction>4</interaction>
+        <production>3</production>
+      </speaking>
+      <writing>2</writing>
+    </language>
+    <!-- and/or -->
+    <!-- can be multiple -->
+    <language mother-tongue="yes">
+      <lang>English</lang>
+    </language>
+  </language-table>
+
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <language-list>
+    <!-- optional -->
+    <!-- optional attribute: id="[language_skills|...]" -->
+    <!--
+    <title>Languages skills</title>
+    -->
+    <!--
+    1 - Proficient
+    2 - Advanced
+    3 - Upper intermediate
+    4 - Intermediate
+    5 - Pre-intermediate
+    6 - Beginner
+    -->
+    <!-- can be multiple -->
+    <!-- optional attribute: break-after="[YES|no]" -->
+    <language mother-tongue="yes">
+      <lang>English</lang>
+    </language>
+    <language>
+      <lang>French</lang>
+      <level>1</level>
+    </language>
+  </language-list>
+
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <!-- optional attribute: sort="[YES|no]" -->
+  <list>
+    <!-- optional attribute: id="[interests|...]" -->
+    <title>Interests</title>
+    <!-- can be multiple -->
+    <item>Books</item>
+  </list>
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <signature break-after="yes"/>
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <publications break-after="yes">
+    <!-- optional -->
+    <!-- optional attribute: id="[publications|...]" -->
+    <!--
+    <title>Publications</title>
+    -->
+    <!-- can be multiple -->
+    <publ>
+      <author>
+        <firstname>John</firstname>
+        <!-- optional -->
+        <middlename>Peter</middlename>
+        <lastname>Doe</lastname>
+      </author>
+      <!-- or -->
+      <!-- - ->
+      <authors>
+        <author>
+          <firstname>Firstname 1</firstname>
+          <!- - optional - ->
+          <middlename>Peter 1</middlename>
+          <lastname>Lastname 1</lastname>
+        </author>
+        <author>
+          <firstname>Firstname 2</firstname>
+          <!- - optional - ->
+          <middlename>Peter 2</middlename>
+          <lastname>Lastname 2</lastname>
+        </author>
+      </authors>
+      <!- - -->
+      <title>Name of the publication</title>
+      <!-- optional -->
+      <event>Diploma thesis</event>
+      <!-- optional -->
+      <department>Some department</department>
+      <!-- optional -->
+      <institut>Some institut</institut>
+      <!-- optional -->
+      <city>Some city</city>
+      <!-- optional -->
+      <country>Some country</country>
+      <!-- optional -->
+      <date>20.5.1992</date>
+      <!-- optional -->
+      <url>http://www.page.com/path/to/file.pdf</url>
+      <!-- optional -->
+      <isbn>80-200-0496-3</isbn>
+      <!-- optional -->
+      <issn>1801-3805</issn>
+      <!-- optional -->
+      <pages>100-110</pages>
+    </publ>
+  </publications>
+
+
+  <!-- optional -->
+  <!-- optional attribute: show="[YES|no]" -->
+  <!-- optional attribute: break-after="[yes|NO]" -->
+  <computer-knowledge>
+    <!-- optional -->
+    <!-- optional attribute: id="[computer_knowledge|...]" -->
+    <!--
+    <title>Computer knowledge</title>
+    -->
+    <!--
+    type 1 = | NAME | Years of use | Last use | Unix       | Windows |           | Self rating |
+    type 2 = | NAME | Years of use | Last use | User       | Admin   | Developer | Self rating |
+    type 3 = | NAME | Years of use | Last use | Consultant | Admin   | Developer | Self rating |
+    type 4 = | NAME | Years of use | Last use |            |         |           | Self rating |
+    type 5 = | NAME                                    | Years of use | Last use | Self rating |
+    -->
+    <!-- can be multiple -->
+    <table type="1">
+      <title>Programming language</title>
+      <!-- can be multiple -->
+      <row>
+        <name>Assembler</name>
+        <interval>
+          <start>1988</start>
+          <!-- optional -->
+          <end>1990</end>
+        </interval>
+        <!-- optional -->
+        <unix>yes</unix>
+        <!-- optional -->
+        <windows>yes</windows>
+        <rating>4</rating>
+      </row>
+    </table>
+
+    <!-- can be multiple -->
+    <table type="2">
+      <title>Operating system</title>
+      <!-- can be multiple -->
+      <row>
+        <name>Linux</name>
+        <interval>
+          <start>1995</start>
+          <!-- optional -->
+          <!--<end>2000</end>-->
+        </interval>
+        <!-- optional -->
+        <user>yes</user>
+        <!-- optional -->
+        <admin>yes</admin>
+        <!-- optional -->
+        <developer>yes</developer>
+        <rating>10</rating>
+      </row>
+    </table>
+
+    <!-- can be multiple -->
+    <table type="3">
+      <title>LAN/WAN</title>
+      <!-- can be multiple -->
+      <row>
+        <name>Ethernet</name>
+        <interval>
+          <start>1995</start>
+          <!-- optional -->
+          <!--<end>2000</end>-->
+        </interval>
+        <!-- optional -->
+        <consultant>yes</consultant>
+        <!-- optional -->
+        <admin>yes</admin>
+        <!-- optional -->
+        <developer>yes</developer>
+        <rating>7</rating>
+      </row>
+    </table>
+
+    <!-- can be multiple -->
+    <table type="4">
+      <title>Word processing</title>
+      <!-- can be multiple -->
+      <row>
+        <name>MS Office</name>
+        <interval>
+          <start>1995</start>
+          <!-- optional -->
+          <end>2000</end>
+        </interval>
+        <rating>9</rating>
+      </row>
+    </table>
+
+    <!-- can be multiple -->
+    <table type="5">
+      <title>Word processing</title>
+      <!-- can be multiple -->
+      <row>
+        <name>MS Office</name>
+        <interval>
+          <start>1995</start>
+          <!-- optional -->
+          <end>2000</end>
+        </interval>
+        <rating>9</rating>
+      </row>
+    </table>
+  </computer-knowledge>
+</cv>
