@@ -473,7 +473,7 @@
     <xsl:variable name="show_desc" select="@show-description"/>
     <xsl:variable name="show_keys" select="@show-keys"/>
 
-    <xsl:for-each select="./experience">
+    <xsl:for-each select="./experience[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]">
       <xsl:sort select="concat(substring(./interval/start, 4, 4), substring(./interval/start, 1, 2))" order="descending"/>
 
       <fo:list-block>

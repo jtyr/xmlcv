@@ -11,10 +11,7 @@
 # Include commons
 source "../../xmlcv-0.4/scripts/commons.sh"
 
-# Generate input parameters for XSL template
-if [[ -n ${ROLE} && ${#ROLE} ]]; then ROLE_P="role=\"${ROLE}\""; fi
-
-XSLT_INPUT_P="${XSLT_INPUT} ${ROLE}"
+XSLT_INPUT_P="${XSLT_INPUT} ${ROLE_P}"
 
 echo "### Used command:"
 echo -e "ROLE=\"${ROLE}\" $0 ${OUT_FORMAT}\n"

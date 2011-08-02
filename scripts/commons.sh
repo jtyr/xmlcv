@@ -42,6 +42,9 @@ if [ -z ${SRC_LANG} ]; then SRC_LANG="en"; fi
 # Default XML source file
 if [ -z ${SRC} ]; then SRC="${SRC_PATH}/${PROJECT}-${SRC_LANG}.xml"; fi
 
+# Default role
+if [[ -n ${ROLE} && ${#ROLE} ]]; then ROLE_P="role=\"${ROLE}\""; fi
+
 # Default output path
 if [ -z ${OUT_PATH} ]; then OUT_PATH="."; fi
 # Default output file

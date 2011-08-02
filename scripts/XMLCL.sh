@@ -26,7 +26,6 @@ if [[ -n ${RECIPIENT} && ${#RECIPIENT} ]]; then RECIPIENT_P="recipient=\"${RECIP
 if [[ -n ${POST} && ${#POST} ]]; then POST_P="post=\"${POST}\""; fi
 if [[ -n ${JOB_LISTING} && ${#JOB_LISTING} ]]; then JOB_LISTING_P="job-listing=\"${JOB_LISTING}\""; fi
 if [[ -n ${SALUTATION} && ${#SALUTATION} ]]; then SALUTATION_P="salutation=\"${SALUTATION}\""; fi
-if [[ -n ${ROLE} && ${#ROLE} ]]; then ROLE_P="role=\"${ROLE}\""; fi
 
 # Define input parameters for saxon
 XSLT_INPUT_P="${XSLT_INPUT} ${RECIPIENT_P} ${POST_P} ${JOB_LISTING_P} ${SALUTATION_P} ${ROLE_P}"
