@@ -8,7 +8,8 @@ Changes in version 0.4:
 * added option for residence in the address block
 * added option to define key skills in the work-experience section
 * added option to define a role of some elements (text-block title, text-block
-  text, work-experience title, work-experience description, skill title)
+  text, work-experience title, work-experience description work-experience
+  block, skill title)
 * correction of the German translation (thanks to Reiner Rottmann)
 * correction of newer printed middle name in the Signature section
 * CERF levels re-definition according to the official terminology (en, cs)

@@ -52,6 +52,15 @@
 <!-- line length -->
 <xsl:param name="line_length">80</xsl:param>
 
+<!-- page margin parameters -->
+<xsl:param name="simple.page.master.margin-top">15mm</xsl:param>
+<xsl:param name="simple.page.master.margin-bottom">10mm</xsl:param>
+<xsl:param name="simple.page.master.margin-left">20mm</xsl:param>
+<xsl:param name="simple.page.master.margin-right">20mm</xsl:param>
+
+<!-- intent of the personal table column -->
+<xsl:param name="personal.table.column.column-width">60.3mm</xsl:param>
+
 <!-- language list separator -->
 <xsl:param name="labeled_list_separator"> - </xsl:param>
 
@@ -102,10 +111,10 @@
 <xsl:attribute-set name="simple.page.master">
   <xsl:attribute name="page-width">210mm</xsl:attribute>
   <xsl:attribute name="page-height">297mm</xsl:attribute>
-  <xsl:attribute name="margin-top">15mm</xsl:attribute>
-  <xsl:attribute name="margin-bottom">10mm</xsl:attribute>
-  <xsl:attribute name="margin-left">20mm</xsl:attribute>
-  <xsl:attribute name="margin-right">20mm</xsl:attribute>
+  <xsl:attribute name="margin-top"><xsl:value-of select="$simple.page.master.margin-top"/></xsl:attribute>
+  <xsl:attribute name="margin-bottom"><xsl:value-of select="$simple.page.master.margin-bottom"/></xsl:attribute>
+  <xsl:attribute name="margin-left"><xsl:value-of select="$simple.page.master.margin-left"/></xsl:attribute>
+  <xsl:attribute name="margin-right"><xsl:value-of select="$simple.page.master.margin-right"/></xsl:attribute>
 </xsl:attribute-set>
 
 <!-- page sequence - global font setting -->
@@ -168,7 +177,7 @@
 
 <!-- personal table first column -->
 <xsl:attribute-set name="personal.table.column">
-  <xsl:attribute name="column-width">60.3mm</xsl:attribute>
+  <xsl:attribute name="column-width"><xsl:value-of select="$personal.table.column.column-width"/></xsl:attribute>
 </xsl:attribute-set>
 
 <!-- personal table label cell -->

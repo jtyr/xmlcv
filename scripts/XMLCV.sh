@@ -11,6 +11,7 @@
 # Include commons
 source "../../xmlcv-0.4/scripts/commons.sh"
 
+# Define input parameters for saxon
 XSLT_INPUT_P="${XSLT_INPUT} ${ROLE_P}"
 
 echo "### Used command:"
