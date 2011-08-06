@@ -45,8 +45,8 @@
 
 
 <!-- includes -->
-<xsl:include href="Setting-cv.xsl"/>
-<xsl:include href="Utils.xsl"/>
+<xsl:include href="includes/Setting-cv.xsl"/>
+<xsl:include href="includes/Utils.xsl"/>
 
 
 <!-- main template -->
@@ -152,6 +152,11 @@
 <xsl:template match="personal[@show!='yes']">
 </xsl:template>
 <xsl:template match="personal[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="personal-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="personal-run">
   <!-- get number of lines in personal table -->
   <xsl:variable name="personal_length" select="count(child::*) + count(child::address/*) - 2"/>
   <!-- get photo url -->
@@ -364,6 +369,11 @@
 <xsl:template match="text-block[@show!='yes']">
 </xsl:template>
 <xsl:template match="text-block[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="text-block-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="text-block-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -385,6 +395,11 @@
 <xsl:template match="work-experience[@show!='yes']">
 </xsl:template>
 <xsl:template match="work-experience[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="work-experience-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="work-experience-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -399,7 +414,16 @@
     </xsl:choose>
 
     <xsl:variable name="show_desc" select="@show-description"/>
-    <xsl:variable name="show_keys" select="@show-keys"/>
+    <xsl:variable name="show_keys">
+      <xsl:choose>
+        <xsl:when test="string-length($show_keys)">
+          <xsl:value-of select="$show_keys"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@show-keys"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 
     <table class="list_block">
       <xsl:for-each select="./experience[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]">
@@ -460,7 +484,7 @@
               </div>
             </xsl:if>
 
-            <xsl:if test="./keys and (string-length($show_keys) = 0 or (string-length($show_keys) and $show_keys='yes'))">
+            <xsl:if test="./keys and string-length($show_keys) and $show_keys='yes'">
               <div class="experience_keys">
                 <xsl:if test="string-length(./keys/@title)">
                   <xsl:value-of select="./keys/@title"/>
@@ -500,6 +524,11 @@
 <xsl:template match="education[@show!='yes']">
 </xsl:template>
 <xsl:template match="education[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="education-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="education-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -549,6 +578,11 @@
 <xsl:template match="skills[@show!='yes']">
 </xsl:template>
 <xsl:template match="skills[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="skills-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="skills-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -590,6 +624,11 @@
 <xsl:template match="language-table[@show!='yes']">
 </xsl:template>
 <xsl:template match="language-table[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="language-table-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="language-table-run">
   <div style="padding-bottom: 2px;">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -815,6 +854,11 @@
 <xsl:template match="language-list[@show!='yes']">
 </xsl:template>
 <xsl:template match="language-list[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="language-list-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="language-list-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -863,6 +907,11 @@
 <xsl:template match="labeled-list[@show!='yes']">
 </xsl:template>
 <xsl:template match="labeled-list[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="labeled-list-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="labeled-list-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -913,6 +962,11 @@
 <xsl:template match="list[@show!='yes']">
 </xsl:template>
 <xsl:template match="list[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="list-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="list-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -952,6 +1006,11 @@
 <xsl:template match="signature[@show!='yes']">
 </xsl:template>
 <xsl:template match="signature[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="signature-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="signature-run">
   <xsl:if test="string-length($show_signature) and $show_signature = 'yes'">
     <!-- get middlename -->
     <xsl:variable name="middlename">
@@ -982,6 +1041,11 @@
 <xsl:template match="publications[@show!='yes']">
 </xsl:template>
 <xsl:template match="publications[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="publications-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="publications-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
@@ -1078,6 +1142,11 @@
 <xsl:template match="computer-knowledge[@show!='yes']">
 </xsl:template>
 <xsl:template match="computer-knowledge[@show='yes' or not(@show)]">
+  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+    <xsl:call-template name="computer-knowledge-run"/>
+  </xsl:if>
+</xsl:template>
+<xsl:template name="computer-knowledge-run">
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">

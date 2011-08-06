@@ -30,8 +30,8 @@
 
 
 <!-- includes -->
-<xsl:include href="Setting-cl.xsl"/>
-<xsl:include href="Utils.xsl"/>
+<xsl:include href="includes/Setting-cl.xsl"/>
+<xsl:include href="includes/Utils.xsl"/>
 
 
 <!-- main template -->
