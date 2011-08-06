@@ -10,16 +10,16 @@
 
 # Show the usage if there is no input parameter
 if [[ -z ${RECIPIENT} || -z ${POST} ]]; then
-	echo "Usage:"
+	echo 'Usage:'
 	echo -e "RECIPIENT=\"\" POST=\"\" JOB_LISTING=\"\" SALUTATION=\"\" ROLE=\"\" $0 <format>"
 	exit 1
 fi
 
 # Redefine the project name
-PROJECT="cl"
+PROJECT='cl'
 
 # Include commons
-source "../../xmlcv-0.4/scripts/commons.sh"
+source '../../xmlcv-0.4/scripts/commons.sh'
 
 # Generate input parameters for XSL template
 if [[ -n ${RECIPIENT} && ${#RECIPIENT} ]]; then RECIPIENT_P="recipient=\"${RECIPIENT}\""; fi
@@ -36,7 +36,7 @@ F_POST=${F_POST//\//_}
 OUT="${OUT_PATH}/${PROJECT}-en_${RECIPIENT}-${F_POST}"
 
 # Show which command was executed
-echo "### Used command:"
+echo '### Used command:'
 echo -e "RECIPIENT=\"${RECIPIENT}\" POST=\"${POST}\" JOB_LISTING=\"${JOB_LISTING}\" SALUTATION=\"${SALUTATION}\" $0 ${OUT_FORMAT}\n"
 
 # Do not wrap lines for email output
