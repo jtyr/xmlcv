@@ -19,6 +19,8 @@
  #########################
 -->
 
+<!-- ### Common parameters -->
+
 <!-- project name -->
 <xsl:param name="project">xmlcv</xsl:param>
 
@@ -31,26 +33,30 @@
 <!-- current year -->
 <xsl:param name="current_year" select="substring($current_date, 7, 4)"/>
 
-<!-- show footer -->
-<xsl:param name="show_footer">yes</xsl:param>
-
 <!-- show signature -->
 <xsl:param name="show_signature">yes</xsl:param>
+
+<!-- default show keys parameter -->
+<xsl:param name="show_keys"></xsl:param>
+
+<!-- language list separator -->
+<xsl:param name="labeled_list_separator"> - </xsl:param>
+
+<!-- lower-case and upper-case characters -->
+<xsl:param name="lc_char">abcdefghijklmnopqrstuvwxyzáčďéěíňóřšťúůýžäü</xsl:param>
+<xsl:param name="uc_char">ABCDEFGHIJKLMNOPQRSTUVWXYZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽÄÜ</xsl:param>
+
+
+<!-- ### FO parameters -->
+
+<!-- show footer -->
+<xsl:param name="show_footer">yes</xsl:param>
 
 <!-- font size -->
 <xsl:param name="font_size">12</xsl:param>
 
-<!-- css path -->
-<xsl:param name="css_path">./css/</xsl:param>
-
 <!-- color of text in not used cell -->
 <xsl:param name="ck_not_used_color">white</xsl:param> <!-- if it is white, it will be not visible -->
-
-<!-- end of line (windows='&#xd;&#xa;', unix='&#xa;' ) -->
-<xsl:param name="end_of_line" select="'&#xd;&#xa;'"/>
-
-<!-- line length -->
-<xsl:param name="line_length">80</xsl:param>
 
 <!-- page margin parameters -->
 <xsl:param name="simple.page.master.margin-top">15mm</xsl:param>
@@ -60,16 +66,6 @@
 
 <!-- intent of the personal table column -->
 <xsl:param name="personal.table.column.column-width">60.3mm</xsl:param>
-
-<!-- language list separator -->
-<xsl:param name="labeled_list_separator"> - </xsl:param>
-
-<!-- title bullet -->
-<xsl:param name="title_bullet">### </xsl:param>
-
-<!-- lower-case and upper-case characters -->
-<xsl:param name="lc_char">abcdefghijklmnopqrstuvwxyzáčďéěíňóřšťúůýžäü</xsl:param>
-<xsl:param name="uc_char">ABCDEFGHIJKLMNOPQRSTUVWXYZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽÄÜ</xsl:param>
 
 <!-- *** getInterval indent used in Work experience and Education ***
                         =>|  |<= distance
@@ -85,9 +81,29 @@
 <xsl:param name="listitem_indent_separator_width">4.5mm</xsl:param>
 
 
+<!-- ### TXT parameters -->
+
+<!-- end of line (windows='&#xd;&#xa;', unix='&#xa;' ) -->
+<xsl:param name="end_of_line" select="'&#xd;&#xa;'"/>
+
+<!-- line length -->
+<xsl:param name="line_length">80</xsl:param>
+
+<!-- title bullet -->
+<xsl:param name="title_bullet">### </xsl:param>
+
+
+<!-- ### XHTML parameters -->
+
+<!-- css path -->
+<xsl:param name="css_path">./css/</xsl:param>
+
+
 <!--
  ##################################
  ## A T T R I B U T E    S E T S ##
+ ##################################
+ ###### for FO template only ######
  ##################################
 -->
 

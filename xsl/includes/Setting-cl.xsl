@@ -19,6 +19,8 @@
  #########################
 -->
 
+<!-- ### Common parameters -->
+
 <!-- project name -->
 <xsl:param name="project">xmlcl</xsl:param>
 
@@ -46,14 +48,27 @@
 <!-- default indentation of paragraphs -->
 <xsl:param name="noindent">no</xsl:param>
 
+<!-- lower-case and upper-case characters -->
+<xsl:param name="lc_char">abcdefghijklmnopqrstuvwxyzáčďéěíňóřšťúůýžäü</xsl:param>
+<xsl:param name="uc_char">ABCDEFGHIJKLMNOPQRSTUVWXYZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽÄÜ</xsl:param>
+
+
+<!-- ### FO parameters -->
+
 <!-- default signature space (2.5cm should be sufficient)-->
 <xsl:param name="signature-space">0cm</xsl:param>
 
 <!-- font size -->
 <xsl:param name="font_size">12</xsl:param>
 
+
+<!-- ### XHTML parameters -->
+
 <!-- css path -->
 <xsl:param name="css_path">./css/</xsl:param>
+
+
+<!-- ### TXT parameters -->
 
 <!-- end of line (windows='&#xd;&#xa;', unix='&#xa;' ) -->
 <xsl:param name="end_of_line" select="'&#xd;&#xa;'"/>
@@ -64,13 +79,11 @@
 <!-- title bullet -->
 <xsl:param name="title_bullet">### </xsl:param>
 
-<!-- lower-case and upper-case characters -->
-<xsl:param name="lc_char">abcdefghijklmnopqrstuvwxyzáčďéěíňóřšťúůýžäü</xsl:param>
-<xsl:param name="uc_char">ABCDEFGHIJKLMNOPQRSTUVWXYZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽÄÜ</xsl:param>
-
 <!--
  ##################################
  ## A T T R I B U T E    S E T S ##
+ ##################################
+ ###### for FO template only ######
  ##################################
 -->
 

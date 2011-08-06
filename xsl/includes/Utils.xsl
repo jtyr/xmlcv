@@ -3,7 +3,7 @@
 
 <!--
   **********************************************************
-  ** Description: XMLCV Utilities - shared template
+  ** Description: Utilities - shared template
   **
   ** (c) Jiri Tyr 2008-2011
   **********************************************************
@@ -18,11 +18,11 @@
   <!ENTITY ldquor	"&#x201E;">
 
   <!-- external entities - doesn't work in Firefox -->
-  <!ENTITY % ISOlat1 SYSTEM './ent/iso-lat1.ent'>
+  <!ENTITY % ISOlat1 SYSTEM '../ent/iso-lat1.ent'>
   %ISOlat1;
-  <!ENTITY % ISOnum  SYSTEM './ent/iso-num.ent'>
+  <!ENTITY % ISOnum  SYSTEM '../ent/iso-num.ent'>
   %ISOnum;
-  <!ENTITY % ISOpub  SYSTEM './ent/iso-pub.ent'>
+  <!ENTITY % ISOpub  SYSTEM '../ent/iso-pub.ent'>
   %ISOpub;
 ]>
 
@@ -538,7 +538,7 @@
 <xsl:template name="getText">
   <xsl:param name="id"/>
 
-  <xsl:value-of select="document(concat('./lang/', $project ,'-', $lang, '.xml'))//text[@id=$id]"/>
+  <xsl:value-of select="document(concat('../lang/', $project ,'-', $lang, '.xml'))//text[@id=$id]"/>
 </xsl:template>
 
 
