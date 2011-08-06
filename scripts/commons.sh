@@ -48,7 +48,7 @@ if [[ -n ${ROLE} && ${#ROLE} ]]; then ROLE_P="role=\"${ROLE}\""; fi
 # Default output path
 if [ -z ${OUT_PATH} ]; then OUT_PATH="."; fi
 # Default output file
-if [ -z ${OUT} ]; then OUT="${OUT_PATH}/${PROJECT}-en"; fi
+if [ -z ${OUT} ]; then OUT="${OUT_PATH}/${PROJECT}-${SRC_LANG}"; fi
 
 if [ -z $1 ]; then
 	OUT_FORMAT="pdf"

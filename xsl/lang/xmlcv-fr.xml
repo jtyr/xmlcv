@@ -18,7 +18,7 @@
   <text id="page_of"> de </text>
 
   <text id="personal_name">Nom:</text>
-  <text id="personal_address">Address:</text>
+  <text id="personal_address">Adresse:</text>
   <text id="personal_telephone">Téléphone:</text>
   <text id="personal_telephone_private">Téléphone privé:</text>
   <text id="personal_telephone_office">Téléphone au bureau:</text>
@@ -28,45 +28,45 @@
   <text id="personal_fax">Fax:</text>
   <text id="personal_fax_private">Fax privé:</text>
   <text id="personal_fax_office">Fax au bureau:</text>
-  <text id="personal_email">E-mail:</text>
-  <text id="personal_homepage">Homepage:</text>
+  <text id="personal_email">Adresse mail:</text>
+  <text id="personal_homepage">Page web:</text>
   <text id="personal_pgpid">ID de la clé PGP:</text>
   <text id="personal_nationality">Nationalité:</text>
   <text id="personal_birthday">Date de naissance:</text>
   <text id="personal_age">Âge:</text>
   <text id="personal_gender">Sexe:</text>
-  <text id="personal_gender_male">Mâle</text>
-  <text id="personal_gender_female">Femelle</text>
+  <text id="personal_gender_male">Masculin</text>
+  <text id="personal_gender_female">Féminin</text>
   <text id="personal_merital_status">État civil:</text>
 
   <text id="summary">Résumé</text>
 
-  <text id="work_experience">Expérience de travail</text>
+  <text id="work_experience">Expérience professionnelle</text>
   <text id="work_experience_responsible">Responsable: </text>
   <text id="work_experience_employer">Employeur: </text>
   <text id="work_experience_description">Description: </text>
   <text id="work_experience_separator">, </text>
   <text id="work_experience_final">.</text>
 
-  <text id="education">Education</text>
+  <text id="education">Formation</text>
 
   <text id="special_skills">Compétences particulières</text>
 
-  <text id="language_skills">Compétences linguistiques</text>
+  <text id="language_skills">Connaissances linguistiques</text>
 
   <text id="table_mother_tongue">Langue maternelle: </text>
   <text id="table_language">Langue</text>
-  <text id="table_understanding">Understanding</text>
-  <text id="table_speaking">Speaking</text>
-  <text id="table_writing">Writing</text>
-  <text id="table_listening">Listening</text>
-  <text id="table_reading">Reading</text>
+  <text id="table_understanding">Compréhension</text>
+  <text id="table_speaking">Expression orale</text>
+  <text id="table_writing">Expression écrite</text>
+  <text id="table_listening">Ecoute</text>
+  <text id="table_reading">Lecture</text>
   <text id="table_interaction">Interaction</text>
   <text id="table_production">Production</text>
 
   <text id="mother_tongue">Langue maternelle</text>
   <text id="c2">Maîtrise</text>
-  <text id="c1">Autonome</text>
+  <text id="c1">Autonomie</text>
   <text id="b2">Avancé</text>
   <text id="b1">Seuil</text>
   <text id="a2">Intermédiaire</text>
@@ -80,15 +80,15 @@
   <text id="pages">p: </text>
 
   <text id="computer_knowledge">Connaissances en informatique</text>
-  <text id="years_of_use">Années d'utilisation</text>
-  <text id="last_use">Utilisation dernière</text>
+  <text id="years_of_use">Années d'expérience</text>
+  <text id="last_use">Dernière utilisation</text>
   <text id="unix">Unix</text>
   <text id="windows">Windows</text>
   <text id="user">Utilisateur</text>
   <text id="admin">Admin</text>
   <text id="developer">Développeur</text>
   <text id="consultant">Consultant</text>
-  <text id="self_rating">Self rating</text>
+  <text id="self_rating">Auto évaluation</text>
   <text id="self_rating_range"> (1-10)</text>
   <text id="now">Maintenant</text>
   <text id="cross">X</text>
@@ -97,7 +97,7 @@
   <text id="no">Non</text>
 
   <text id="interval_dash"> - </text>
-  <text id="interval_present">Présent</text>
+  <text id="interval_present">à présent</text>
 
   <!--
     %d - day of month (e.g., 01)
@@ -121,7 +121,7 @@
   <text id="date_sep">Sep</text>
   <text id="date_oct">Oct</text>
   <text id="date_nov">Nov</text>
-  <text id="date_dec">Dec</text>
+  <text id="date_dec">Déc</text>
 
   <text id="date_full_jan">Janvier</text>
   <text id="date_full_feb">Février</text>
