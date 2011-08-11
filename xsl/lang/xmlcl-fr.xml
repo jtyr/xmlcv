@@ -15,7 +15,7 @@
   <text id="of"> of </text>
 
   <!-- addressing of the cover letter -->
-  <text id="salutation_beginning">Chers </text>
+  <text id="salutation_beginning"></text>
   <text id="salutation_default">Madame, Monsieur</text>
   <text id="salutation_end">,</text>
 
