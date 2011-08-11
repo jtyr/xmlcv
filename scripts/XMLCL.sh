@@ -31,7 +31,8 @@ if [[ -n ${SALUTATION} && ${#SALUTATION} ]]; then SALUTATION_P="salutation=\"${S
 XSLT_INPUT_P="${XSLT_INPUT} ${RECIPIENT_P} ${POST_P} ${JOB_LISTING_P} ${SALUTATION_P} ${ROLE_P}"
 
 # Redefine the output file name
-F_POST=${POST// /_}
+F_POST=${POST//\'/_}
+F_POST=${F_POST// /_}
 F_POST=${F_POST//\//_}
 OUT="${OUT_PATH}/${PROJECT}-en_${RECIPIENT}-${F_POST}"
 
