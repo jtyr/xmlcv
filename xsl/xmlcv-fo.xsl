@@ -19,7 +19,7 @@
 <xsl:output
   method="xml"
   encoding="UTF-8"
-  indent="yes"
+  indent="no"
 />
 
 

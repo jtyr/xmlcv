@@ -53,7 +53,7 @@ if [[ -n ${OUT_LABEL} ]]; then OUT_LABEL="_${OUT_LABEL}"; fi
 if [ -z ${OUT} ]; then OUT="${OUT_PATH}/${PROJECT}-${SRC_LANG}${OUT_LABEL}"; fi
 
 # Output format
-if [[ -n $1 && -n ${OUT_FORMAT} ]]; then OUT_FORMAT="$1"; fi
+if [[ -n $1 && -z ${OUT_FORMAT} ]]; then OUT_FORMAT="$1"; fi
 if [ -z ${OUT_FORMAT} ]; then OUT_FORMAT='pdf'; fi
 
 # Function which generats the final output
