@@ -35,7 +35,7 @@ F_POST=`echo "${POST}" | LC_ALL="en_US.UTF-8" iconv -f UTF-8 -t 'ascii//TRANSLIT
 F_POST=${F_POST//\'/_}
 F_POST=${F_POST// /_}
 F_POST=${F_POST//\//_}
-OUT="${OUT_PATH}/${PROJECT}-en_${RECIPIENT}-${F_POST}"
+OUT="${OUT_PATH}/${PROJECT}-${SRC_LANG}_${RECIPIENT}-${F_POST}"
 
 # Show which command was executed
 echo '### Used command:'
