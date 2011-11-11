@@ -10,7 +10,7 @@
   -->
 
 
-<lang_text>
+<lang-text>
   <text id="cv">CURRICULUM VITAE</text>
 
   <text id="of"> de </text>
@@ -139,4 +139,4 @@
   <text id="date_other">??</text>
 
   <text id="generated_by">Créé dans XMLCV</text>
-</lang_text>
+</lang-text>
