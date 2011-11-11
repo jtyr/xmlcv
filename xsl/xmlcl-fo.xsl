@@ -126,8 +126,8 @@
   </fo:block>
 
   <!-- recipient -->
-  <xsl:if test="/cl/recipients/recipient[@id = $recipient]">
-    <xsl:variable name="recipient_node" select="/cl/recipients/recipient[@id = $recipient]"/>
+  <xsl:if test="document($recipients)//recipient[@id = $recipient]">
+    <xsl:variable name="recipient_node" select="document($recipients)//recipient[@id = $recipient]"/>
 
     <fo:block xsl:use-attribute-sets="recipients">
       <fo:block><xsl:value-of select="$recipient_node/name"/></fo:block>
@@ -152,7 +152,14 @@
       </fo:block>
       <xsl:if test="string-length($recipient_node/country)">
         <fo:block>
-          <xsl:value-of select="$recipient_node/country"/>
+          <xsl:choose>
+            <xsl:when test="$recipient_node/country[@lang=$lang]">
+              <xsl:value-of select="$recipient_node/country[@lang=$lang]"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$recipient_node/country[not(@lang)]"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </fo:block>
       </xsl:if>
     </fo:block>
@@ -235,6 +242,12 @@
 </xsl:template>
 
 
+<!-- recipient-name element -->
+<xsl:template match="text/p//recipient-name">
+  <xsl:value-of select="document($recipients)//recipient[@id = $recipient]/name"/>
+</xsl:template>
+
+
 <!-- post element -->
 <xsl:template match="text/p//post">
   <xsl:value-of select="$post"/>
@@ -248,8 +261,8 @@
       <xsl:when test="string-length($job-listing)">
         <xsl:value-of select="$job-listing"/>
       </xsl:when>
-      <xsl:when test="string-length(/cl/recipients/recipient[@id = $recipient]/job-listing)">
-        <xsl:value-of select="/cl/recipients/recipient[@id = $recipient]/job-listing"/>
+      <xsl:when test="string-length(document($recipients)//recipient[@id = $recipient]/job-listing)">
+        <xsl:value-of select="document($recipients)//recipient[@id = $recipient]/job-listing"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>???</xsl:text>
@@ -277,19 +290,6 @@
 
 <!-- filter any other text -->
 <xsl:template match="text()">
-</xsl:template>
-
-
-<xsl:template name="getFullName">
-  <!-- get middlename -->
-  <xsl:variable name="middlename">
-    <xsl:if test="string-length(/cl/personal/name/middlename)">
-      <xsl:value-of select="concat(/cl/personal/name/middlename, ' ')"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <!-- name -->
-  <xsl:value-of select="concat(/cl/personal/name/firstname, ' ', $middlename, /cl/personal/name/lastname)"/>
 </xsl:template>
 
 

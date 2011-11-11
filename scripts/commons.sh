@@ -36,7 +36,7 @@ if [ -z ${XSL_TXT} ]; then XSL_TXT="${MAIN_PATH}/xsl/xml${PROJECT}-txt.xsl"; fi
 if [ -z ${XSL_XHTML} ]; then XSL_XHTML="${MAIN_PATH}/xsl/xml${PROJECT}-xhtml.xsl"; fi
 
 # Default path to the XML source file
-if [ -z ${SRC_PATH} ]; then SRC_PATH='.'; fi
+if [ -z ${SRC_PATH} ]; then SRC_PATH=$(pwd); fi
 # Default languagge of the XML source file
 if [ -z ${SRC_LANG} ]; then SRC_LANG='en'; fi
 # Default XML source file
@@ -58,6 +58,9 @@ if [ -z ${OUT_FORMAT} ]; then OUT_FORMAT='pdf'; fi
 
 # Function which generats the final output
 function generate() {
+	# Add src_path as a parameter for Saxon
+	XSLT_INPUT_P="${XSLT_INPUT_P} src_path=${SRC_PATH}"
+
 	if [ ${OUT_FORMAT,,} == 'validate' ]; then
 		echo '### Validating the source file:'
 		${XMLLINT} --noout --relaxng ${RNG} ${SRC}

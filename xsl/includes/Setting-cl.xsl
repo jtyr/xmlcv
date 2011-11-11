@@ -52,6 +52,15 @@
 <xsl:param name="lc_char">abcdefghijklmnopqrstuvwxyzáčďéěíňóřšťúůýžäü</xsl:param>
 <xsl:param name="uc_char">ABCDEFGHIJKLMNOPQRSTUVWXYZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽÄÜ</xsl:param>
 
+<!-- Default source XML path -->
+<xsl:param name="src_path"></xsl:param>
+
+<!-- Default recilipents file name -->
+<xsl:param name="recipients_file">recipients.xml</xsl:param>
+
+<!-- Default recipients file path -->
+<xsl:param name="recipients" select="concat($src_path, '/', $recipients_file)"/>
+
 
 <!-- ### FO parameters -->
 
@@ -206,6 +215,25 @@
 <xsl:attribute-set name="greeting.name">
   <xsl:attribute name="space-before"><xsl:value-of select="$signature-space"/></xsl:attribute>
 </xsl:attribute-set>
+
+
+<!--
+ ###################
+ ## C O M M O N S ##
+ ###################
+-->
+
+<xsl:template name="getFullName">
+  <!-- get middlename -->
+  <xsl:variable name="middlename">
+    <xsl:if test="string-length(/cl/personal/name/middlename)">
+      <xsl:value-of select="concat(/cl/personal/name/middlename, ' ')"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <!-- name -->
+  <xsl:value-of select="concat(/cl/personal/name/firstname, ' ', $middlename, /cl/personal/name/lastname)"/>
+</xsl:template>
 
 
 </xsl:transform>

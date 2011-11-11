@@ -118,8 +118,8 @@
   <xsl:call-template name="printNewLine"><xsl:with-param name="count" select="3"/></xsl:call-template>
 
   <!-- recipient -->
-  <xsl:if test="/cl/recipients/recipient[@id = $recipient]">
-    <xsl:variable name="recipient_node" select="/cl/recipients/recipient[@id = $recipient]"/>
+  <xsl:if test="document($recipients)//recipient[@id = $recipient]">
+    <xsl:variable name="recipient_node" select="document($recipients)//recipient[@id = $recipient]"/>
 
     <xsl:variable name="recipient_address">
       <xsl:value-of select="$recipient_node/name"/>
@@ -230,8 +230,8 @@
       <xsl:when test="string-length($job-listing)">
         <xsl:value-of select="$job-listing"/>
       </xsl:when>
-      <xsl:when test="string-length(/cl/recipients/recipient[@id = $recipient]/job-listing)">
-        <xsl:value-of select="/cl/recipients/recipient[@id = $recipient]/job-listing"/>
+      <xsl:when test="string-length(document($recipients)//recipient[@id = $recipient]/job-listing)">
+        <xsl:value-of select="document($recipients)//recipient[@id = $recipient]/job-listing"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>???</xsl:text>
@@ -251,19 +251,6 @@
 
 <!-- filter any other text -->
 <xsl:template match="text()">
-</xsl:template>
-
-
-<xsl:template name="getFullName">
-  <!-- get middlename -->
-  <xsl:variable name="middlename">
-    <xsl:if test="string-length(/cl/personal/name/middlename)">
-      <xsl:value-of select="concat(/cl/personal/name/middlename, ' ')"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <!-- name -->
-  <xsl:value-of select="concat(/cl/personal/name/firstname, ' ', $middlename, /cl/personal/name/lastname)"/>
 </xsl:template>
 
 
