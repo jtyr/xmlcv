@@ -25,6 +25,15 @@ else
 	SRC_LANG="$2"
 fi
 
+# Redefine the output file name
+if [ -z ${OUT} ]; then
+	F_POST=`echo "${POST}" | LC_ALL="en_US.UTF-8" iconv -f UTF-8 -t 'ascii//TRANSLIT'`
+	F_POST=${F_POST//\'/_}
+	F_POST=${F_POST// /_}
+	F_POST=${F_POST//\//_}
+	OUT="${PROJECT}-${SRC_LANG}_${RECIPIENT}-${F_POST}"
+fi
+
 # Include commons
 source '../../xmlcv-0.4/scripts/commons.sh'
 
@@ -37,14 +46,8 @@ if [[ -n ${SALUTATION} && ${#SALUTATION} ]]; then SALUTATION_P="salutation=\"${S
 # Define input parameters for saxon
 XSLT_INPUT_P="${XSLT_INPUT} ${RECIPIENT_P} ${POST_P} ${JOB_LISTING_P} ${SALUTATION_P} ${ROLE_P}"
 
-# Redefine the output file name
-if [ -z ${OUT} ]; then
-	F_POST=`echo "${POST}" | LC_ALL="en_US.UTF-8" iconv -f UTF-8 -t 'ascii//TRANSLIT'`
-	F_POST=${F_POST//\'/_}
-	F_POST=${F_POST// /_}
-	F_POST=${F_POST//\//_}
-	OUT="${OUT_PATH}/${PROJECT}-${SRC_LANG}_${RECIPIENT}-${F_POST}"
-fi
+# Add OUT_PATH to the OUT
+OUT="${OUT_PATH}/${OUT}"
 
 # Show which command was executed
 echo '### Used command:'
