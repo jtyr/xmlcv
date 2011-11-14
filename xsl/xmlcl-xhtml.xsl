@@ -296,6 +296,12 @@
 </xsl:template>
 
 
+<!-- recipient-name element -->
+<xsl:template match="text/p//recipient-name">
+  <xsl:value-of select="document($recipients)//recipient[@id = $recipient]/name"/>
+</xsl:template>
+
+
 <!-- post element -->
 <xsl:template match="text/p//post">
   <xsl:value-of select="$post"/>
