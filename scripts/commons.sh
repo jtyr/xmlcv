@@ -74,12 +74,13 @@ function generate() {
 	elif [[ ${OUT_FORMAT,,} == 'html' || ${OUT_FORMAT,,} == 'xhtml' ]]; then
 		echo '### Generating HTML file:'
 		${SAXON} -o ${OUT}.html ${SRC} ${XSL_XHTML} ${DATE} ${XSLT_INPUT_P}
-		# Tide up the code and replace the CSS and IMG references by Base64 string
+		# Tide up the code
 		if [ -e '/usr/bin/tidy' ]; then
 			/usr/bin/tidy -utf8 -iqm -w 0 ${OUT}.html 2>/dev/null
-			sed -i -r "s/<link media=\"screen\" href=\".[^\"]+\"/<link media=\"screen\" href=\"data:text\/css;base64,`grep '<link' ${OUT}.html | sed -r 's/.* href=\"(.[^\"]+)\" .*/\1/' | xargs base64 -w 0 | sed 's,/,\\\/,g'`\"/" ${OUT}.html
-			sed -i -r "s/<img src=\".[^.]+\.(.[^\"]+)\"/<img src=\"data:image\/\1;base64,`grep '<img' ${OUT}.html | sed -r 's/.* src=\"(.[^\"]+)\" .*/\1/' | xargs base64 -w 0 | sed 's,/,\\\/,g'`\"/" ${OUT}.html
 		fi
+		# Replace the CSS and IMG references by Base64 string (only local files)
+		perl -pi -e 's/(<link (.[^>]*|)href=")(.[^"]+)"/"$1data:text\/css;base64,".`base64 -w 0 $3`."\""/ge' ${OUT}.html
+		perl -pi -e 's/(<img (.[^>]*|)src=")(.[^.]+)\.(.[^"]+)"/"$1data:image\/$4;base64,".`base64 -w 0 $3.$4`."\""/ge' ${OUT}.html
 	else
 		echo 'Unknown output format!'
 	fi
