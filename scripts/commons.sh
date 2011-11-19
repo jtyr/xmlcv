@@ -81,6 +81,8 @@ function generate() {
 		# Replace the CSS and IMG references by Base64 string (only local files)
 		perl -pi -e 's/(<link (.[^>]*|)href=")(.[^"]+)"/"$1data:text\/css;base64,".`base64 -w 0 $3`."\""/ge' ${OUT}.html
 		perl -pi -e 's/(<img (.[^>]*|)src=")(.[^.]+)\.(.[^"]+)"/"$1data:image\/$4;base64,".`base64 -w 0 $3.$4`."\""/ge' ${OUT}.html
+		# Change newslines to Windows format CR+LF
+		perl -pi -e 's/\n/\r\n/g' ${OUT}.html
 	else
 		echo 'Unknown output format!'
 	fi
