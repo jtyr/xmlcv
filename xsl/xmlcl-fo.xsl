@@ -190,9 +190,21 @@
   </xsl:for-each>
 
   <!-- greeting -->
-  <fo:block xsl:use-attribute-sets="greeting">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'greeting'"/></xsl:call-template>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="string-length($greeting) > 0 and $greeting = 'none'">
+      <!-- do nothing -->
+    </xsl:when>
+    <xsl:when test="string-length($greeting) > 0">
+      <fo:block xsl:use-attribute-sets="greeting">
+        <xsl:value-of select="$greeting"/>
+      </fo:block>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:block xsl:use-attribute-sets="greeting">
+        <xsl:call-template name="getText"><xsl:with-param name="id" select="'greeting'"/></xsl:call-template>
+      </fo:block>
+    </xsl:otherwise>
+  </xsl:choose>
   <fo:block xsl:use-attribute-sets="greeting.name">
     <xsl:call-template name="getFullName"/>
   </fo:block>

@@ -39,6 +39,9 @@
 <!-- default job listing URL -->
 <xsl:param name="job-listing"></xsl:param>
 
+<!-- default greeting -->
+<xsl:param name="greeting"></xsl:param>
+
 <!-- default recipient -->
 <xsl:param name="recipient"></xsl:param>
 

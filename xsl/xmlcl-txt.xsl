@@ -202,8 +202,19 @@
   </xsl:for-each>
 
   <!-- greeting -->
-  <xsl:call-template name="getText"><xsl:with-param name="id" select="'greeting'"/></xsl:call-template>
-  <xsl:call-template name="printNewLine"/>
+  <xsl:choose>
+    <xsl:when test="string-length($greeting) > 0 and $greeting = 'none'">
+      <!-- do nothing -->
+    </xsl:when>
+    <xsl:when test="string-length($greeting) > 0">
+      <xsl:value-of select="$greeting"/>
+      <xsl:call-template name="printNewLine"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="getText"><xsl:with-param name="id" select="'greeting'"/></xsl:call-template>
+      <xsl:call-template name="printNewLine"/>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:call-template name="getFullName"/>
   <xsl:call-template name="printNewLine"/>
 </xsl:template>
