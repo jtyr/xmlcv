@@ -25,7 +25,7 @@
 ]>
 
 
-<xsl:transform version="1.0"
+<xsl:transform version="1.1"
                xmlns="http://www.w3.org/1999/xhtml"
                xmlns:fo="http://www.w3.org/1999/XSL/Format"
                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -187,8 +187,8 @@
   </div>
 
   <!-- recipient -->
-  <xsl:if test="document($recipients)//recipient[@id = $recipient]">
-    <xsl:variable name="recipient_node" select="document($recipients)//recipient[@id = $recipient]"/>
+  <xsl:if test="/cl/recipients/recipient[@id = $recipient] or document($recipients)//recipient[@id = $recipient]">
+    <xsl:variable name="recipient_node" select="/cl/recipients/recipient[@id = $recipient] | document($recipients)//recipient[@id = $recipient]"/>
 
     <div class="recipients">
       <div><xsl:value-of select="$recipient_node/name"/></div>

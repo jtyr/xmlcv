@@ -126,8 +126,8 @@
   </fo:block>
 
   <!-- recipient -->
-  <xsl:if test="document($recipients)//recipient[@id = $recipient]">
-    <xsl:variable name="recipient_node" select="document($recipients)//recipient[@id = $recipient]"/>
+  <xsl:if test="/cl/recipients/recipient[@id = $recipient] or document($recipients)//recipient[@id = $recipient]">
+    <xsl:variable name="recipient_node" select="/cl/recipients/recipient[@id = $recipient] | document($recipients)//recipient[@id = $recipient]"/>
 
     <fo:block xsl:use-attribute-sets="recipients">
       <fo:block><xsl:value-of select="$recipient_node/name"/></fo:block>
