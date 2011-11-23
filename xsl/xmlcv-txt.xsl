@@ -143,15 +143,17 @@
   <xsl:call-template name="printNewLine"/>
 
   <!-- address -->
-  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template>
-  <xsl:if test="string-length(./address/residence)">
-    <xsl:value-of select="concat(' ', ./address/residence, ',')"/>
+  <xsl:if test="./address">
+    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template>
+    <xsl:if test="string-length(./address/residence)">
+      <xsl:value-of select="concat(' ', ./address/residence, ',')"/>
+    </xsl:if>
+    <xsl:value-of select="concat(' ', ./address/street, ', ', ./address/postcode, ' ', ./address/city)"/>
+    <xsl:if test="string-length(./address/country)">
+      <xsl:value-of select="concat(', ', ./address/country)"/>
+    </xsl:if>
+    <xsl:call-template name="printNewLine"/>
   </xsl:if>
-  <xsl:value-of select="concat(' ', ./address/street, ', ', ./address/postcode, ' ', ./address/city)"/>
-  <xsl:if test="string-length(./address/country)">
-    <xsl:value-of select="concat(', ', ./address/country)"/>
-  </xsl:if>
-  <xsl:call-template name="printNewLine"/>
 
   <!-- telephone -->
   <xsl:for-each select="./telephone">
@@ -205,9 +207,11 @@
   </xsl:for-each>
 
   <!-- email -->
-  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template>
-  <xsl:value-of select="concat(' ', ./email)"/>
-  <xsl:call-template name="printNewLine"/>
+  <xsl:if test="string-length(./email)">
+    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template>
+    <xsl:value-of select="concat(' ', ./email)"/>
+    <xsl:call-template name="printNewLine"/>
+  </xsl:if>
 
   <!-- PGP key ID -->
   <xsl:if test="string-length(./pgp-id)">

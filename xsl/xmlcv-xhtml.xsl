@@ -158,7 +158,7 @@
 </xsl:template>
 <xsl:template name="personal-run">
   <!-- get number of lines in personal table -->
-  <xsl:variable name="personal_length" select="count(child::*) + count(child::address/*) - 2"/>
+  <xsl:variable name="personal_length" select="count(child::*) + count(child::address/*) - 1"/>
   <!-- get photo url -->
   <xsl:variable name="photo_url" select="./@photo-url"/>
   <!-- get photo height -->
@@ -192,29 +192,31 @@
     </tr>
 
     <!-- address -->
-    <tr>
-      <td class="personal_table_cell_label" rowspan="{count(child::address/*) - 1}"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template></td>
-      <xsl:choose>
-        <xsl:when test="string-length(./address/residence)">
-          <td class="personal_table_cell_text"><xsl:value-of select="./address/residence"/></td>
-        </xsl:when>
-        <xsl:otherwise>
+    <xsl:if test="./address">
+      <tr>
+        <td class="personal_table_cell_label" rowspan="{count(child::address/*) - 1}"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template></td>
+        <xsl:choose>
+          <xsl:when test="string-length(./address/residence)">
+            <td class="personal_table_cell_text"><xsl:value-of select="./address/residence"/></td>
+          </xsl:when>
+          <xsl:otherwise>
+            <td class="personal_table_cell_text"><xsl:value-of select="./address/street"/></td>
+          </xsl:otherwise>
+        </xsl:choose>
+      </tr>
+      <xsl:if test="string-length(./address/residence)">
+        <tr>
           <td class="personal_table_cell_text"><xsl:value-of select="./address/street"/></td>
-        </xsl:otherwise>
-      </xsl:choose>
-    </tr>
-    <xsl:if test="string-length(./address/residence)">
+        </tr>
+      </xsl:if>
       <tr>
-        <td class="personal_table_cell_text"><xsl:value-of select="./address/street"/></td>
+        <td class="personal_table_cell_text"><xsl:value-of select="concat(./address/postcode, '  ', ./address/city)"/></td>
       </tr>
-    </xsl:if>
-    <tr>
-      <td class="personal_table_cell_text"><xsl:value-of select="concat(./address/postcode, '  ', ./address/city)"/></td>
-    </tr>
-    <xsl:if test="string-length(./address/country)">
-      <tr>
-        <td class="personal_table_cell_text"><xsl:value-of select="./address/country"/></td>
-      </tr>
+      <xsl:if test="string-length(./address/country)">
+        <tr>
+          <td class="personal_table_cell_text"><xsl:value-of select="./address/country"/></td>
+        </tr>
+      </xsl:if>
     </xsl:if>
 
     <!-- telephone -->
@@ -275,14 +277,16 @@
     </xsl:for-each>
 
     <!-- email -->
-    <tr>
-      <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template></td>
-      <td class="personal_table_cell_text">
-        <a href="{concat('mailto:', ./email)}">
-          <xsl:value-of select="./email"/>
-        </a>
-      </td>
-    </tr>
+    <xsl:if test="string-length(./email)">
+      <tr>
+        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template></td>
+        <td class="personal_table_cell_text">
+          <a href="{concat('mailto:', ./email)}">
+            <xsl:value-of select="./email"/>
+          </a>
+        </td>
+      </tr>
+    </xsl:if>
 
     <!-- PGP key ID -->
     <xsl:if test="string-length(./pgp-id)">

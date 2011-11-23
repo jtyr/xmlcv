@@ -102,7 +102,7 @@
 </xsl:template>
 <xsl:template name="personal-run">
   <!-- get number of lines in personal table -->
-  <xsl:variable name="personal_length" select="count(child::*) + count(child::address/*) - 2"/>
+  <xsl:variable name="personal_length" select="count(child::*) + count(child::address/*) - 1"/>
   <!-- get photo url -->
   <xsl:variable name="photo_url" select="./@photo-url"/>
   <!-- get photo height -->
@@ -155,43 +155,45 @@
       </fo:table-row>
 
       <!-- address -->
-      <fo:table-row>
-        <fo:table-cell number-rows-spanned="{count(child::address/*) - 1}">
-          <fo:block xsl:use-attribute-sets="personal.table.cell.label">
-            <fo:block>
-              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template>
+      <xsl:if test="./address">
+        <fo:table-row>
+          <fo:table-cell number-rows-spanned="{count(child::address/*) - 1}">
+            <fo:block xsl:use-attribute-sets="personal.table.cell.label">
+              <fo:block>
+                <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template>
+              </fo:block>
             </fo:block>
-          </fo:block>
-        </fo:table-cell>
-        <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
-          <xsl:choose>
-            <xsl:when test="string-length(./address/residence)">
-              <fo:block><xsl:value-of select="./address/residence"/></fo:block>
-            </xsl:when>
-            <xsl:otherwise>
+          </fo:table-cell>
+          <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
+            <xsl:choose>
+              <xsl:when test="string-length(./address/residence)">
+                <fo:block><xsl:value-of select="./address/residence"/></fo:block>
+              </xsl:when>
+              <xsl:otherwise>
+                <fo:block><xsl:value-of select="./address/street"/></fo:block>
+              </xsl:otherwise>
+            </xsl:choose>
+          </fo:table-cell>
+        </fo:table-row>
+        <xsl:if test="string-length(./address/residence)">
+          <fo:table-row>
+            <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
               <fo:block><xsl:value-of select="./address/street"/></fo:block>
-            </xsl:otherwise>
-          </xsl:choose>
-        </fo:table-cell>
-      </fo:table-row>
-      <xsl:if test="string-length(./address/residence)">
+            </fo:table-cell>
+          </fo:table-row>
+        </xsl:if>
         <fo:table-row>
           <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
-            <fo:block><xsl:value-of select="./address/street"/></fo:block>
+            <fo:block><xsl:value-of select="concat(./address/postcode, '  ', ./address/city)"/></fo:block>
           </fo:table-cell>
         </fo:table-row>
-      </xsl:if>
-      <fo:table-row>
-        <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
-          <fo:block><xsl:value-of select="concat(./address/postcode, '  ', ./address/city)"/></fo:block>
-        </fo:table-cell>
-      </fo:table-row>
-      <xsl:if test="string-length(./address/country)">
-        <fo:table-row>
-          <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
-            <fo:block><xsl:value-of select="./address/country"/></fo:block>
-          </fo:table-cell>
-        </fo:table-row>
+        <xsl:if test="string-length(./address/country)">
+          <fo:table-row>
+            <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
+              <fo:block><xsl:value-of select="./address/country"/></fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+        </xsl:if>
       </xsl:if>
 
       <!-- telephone -->
@@ -264,22 +266,24 @@
       </xsl:for-each>
 
       <!-- email -->
-      <fo:table-row>
-        <fo:table-cell>
-          <fo:block xsl:use-attribute-sets="personal.table.cell.label">
-            <fo:block>
-              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template>
+      <xsl:if test="string-length(./email)">
+        <fo:table-row>
+          <fo:table-cell>
+            <fo:block xsl:use-attribute-sets="personal.table.cell.label">
+              <fo:block>
+                <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template>
+              </fo:block>
             </fo:block>
-          </fo:block>
-        </fo:table-cell>
-        <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
-          <fo:block>
-            <fo:basic-link xsl:use-attribute-sets="link" external-destination="{concat('mailto:', ./email)}">
-              <xsl:value-of select="./email"/>
-            </fo:basic-link>
-          </fo:block>
-        </fo:table-cell>
-      </fo:table-row>
+          </fo:table-cell>
+          <fo:table-cell xsl:use-attribute-sets="personal.table.cell.text">
+            <fo:block>
+              <fo:basic-link xsl:use-attribute-sets="link" external-destination="{concat('mailto:', ./email)}">
+                <xsl:value-of select="./email"/>
+              </fo:basic-link>
+            </fo:block>
+          </fo:table-cell>
+        </fo:table-row>
+      </xsl:if>
 
       <!-- PGP key ID -->
       <xsl:if test="string-length(./pgp-id)">
