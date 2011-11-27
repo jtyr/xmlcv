@@ -27,6 +27,9 @@
 <!-- default role -->
 <xsl:param name="role"></xsl:param>
 
+<!-- default role2 -->
+<xsl:param name="role2"></xsl:param>
+
 <!-- current date -->
 <xsl:param name="current_date">01/01/2011</xsl:param>
 

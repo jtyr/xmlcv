@@ -44,6 +44,8 @@ if [ -z ${SRC} ]; then SRC="${SRC_PATH}/${PROJECT}-${SRC_LANG}.xml"; fi
 
 # Default role
 if [[ -n ${ROLE} && ${#ROLE} ]]; then ROLE_P="role=\"${ROLE}\""; fi
+# Default role2
+if [[ -n ${ROLE2} && ${#ROLE2} ]]; then ROLE_P="${ROLE_P} role2=\"${ROLE2}\""; fi
 
 # Default output path
 if [ -z ${OUT_PATH} ]; then OUT_PATH='.'; fi

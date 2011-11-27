@@ -7,15 +7,16 @@ Changes in version 0.4:
 * added option for pages in the Publication section
 * added option for residence in the address block
 * added option to define key skills in the work-experience section
-* added option to define a role of some elements (text-block title, text-block
-  text, work-experience title, work-experience description work-experience
-  block, skill title)
+* added option to define a role and role2 of some elements (text-block title,
+  text-block text, work-experience title, work-experience description,
+  work-experience block, skill title)
 * correction of the German translation (thanks to Reiner Rottmann)
 * correction of newer printed middle name in the Signature section
 * CERF levels re-definition according to the official terminology (en, cs)
 * improved Shell script for CV generation (scripts/XMLCV.sh)
 * tidy HTML oupput if tidyhtml is installed
 * replace CSS and IMG references by Base64 string in HTML output
+* arbitrary order of elements inside the personal element
 * minor simplification of the FO and HTML template
 
 Changes in version 0.3:

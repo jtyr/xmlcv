@@ -171,7 +171,7 @@
 <xsl:template match="text[@show!='yes']">
 </xsl:template>
 <xsl:template match="text[@show='yes' or not(@show)]">
-  <xsl:for-each select="p[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]">
+  <xsl:for-each select="p[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]">
     <xsl:variable name="p_text">
       <xsl:apply-templates select="."/>
     </xsl:variable>

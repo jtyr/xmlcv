@@ -152,7 +152,7 @@
 <xsl:template match="personal[@show!='yes']">
 </xsl:template>
 <xsl:template match="personal[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="personal-run"/>
   </xsl:if>
 </xsl:template>
@@ -402,7 +402,7 @@
 <xsl:template match="text-block[@show!='yes']">
 </xsl:template>
 <xsl:template match="text-block[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="text-block-run"/>
   </xsl:if>
 </xsl:template>
@@ -410,7 +410,7 @@
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
-        <div class="section_title"><xsl:value-of select="title[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]"/></div>
+        <div class="section_title"><xsl:value-of select="title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/></div>
       </xsl:when>
       <xsl:when test="string-length(title/@id)">
         <div class="section_title"><xsl:call-template name="getText"><xsl:with-param name="id" select="title/@id"/></xsl:call-template></div>
@@ -418,7 +418,7 @@
     </xsl:choose>
 
     <div class="text_block">
-      <xsl:apply-templates select="text[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]"/>
+      <xsl:apply-templates select="text[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/>
     </div>
   </div>
 </xsl:template>
@@ -428,7 +428,7 @@
 <xsl:template match="work-experience[@show!='yes']">
 </xsl:template>
 <xsl:template match="work-experience[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="work-experience-run"/>
   </xsl:if>
 </xsl:template>
@@ -459,7 +459,7 @@
     </xsl:variable>
 
     <table class="list_block">
-      <xsl:for-each select="./experience[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]">
+      <xsl:for-each select="./experience[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]">
         <xsl:sort select="concat(substring(./interval/start, 4, 4), substring(./interval/start, 1, 2))" order="descending"/>
 
         <tr class="list_item_row">
@@ -471,10 +471,10 @@
           <td class="experience_block">
             <xsl:choose>
               <xsl:when test="string-length(./title/@url)">
-                <div class="experience_title"><a href="{./title/@url}"><xsl:value-of select="./title[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]"/></a></div>
+                <div class="experience_title"><a href="{./title/@url}"><xsl:value-of select="./title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/></a></div>
               </xsl:when>
               <xsl:otherwise>
-                <div class="experience_title"><xsl:value-of select="./title[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]"/></div>
+                <div class="experience_title"><xsl:value-of select="./title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/></div>
               </xsl:otherwise>
             </xsl:choose>
             <xsl:if test="./employer">
@@ -511,9 +511,9 @@
                 <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_final'"/></xsl:call-template>
               </div>
             </xsl:if>
-            <xsl:if test="(string-length(./description[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]) and string-length($show_desc) = 0) or (string-length($show_desc) > 0 and $show_desc = 'yes')">
+            <xsl:if test="(string-length(./description[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]) and string-length($show_desc) = 0) or (string-length($show_desc) > 0 and $show_desc = 'yes')">
               <div class="experience_description">
-                <xsl:apply-templates select="./description[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]"/>
+                <xsl:apply-templates select="./description[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/>
               </div>
             </xsl:if>
 
@@ -557,7 +557,7 @@
 <xsl:template match="education[@show!='yes']">
 </xsl:template>
 <xsl:template match="education[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="education-run"/>
   </xsl:if>
 </xsl:template>
@@ -611,7 +611,7 @@
 <xsl:template match="skills[@show!='yes']">
 </xsl:template>
 <xsl:template match="skills[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="skills-run"/>
   </xsl:if>
 </xsl:template>
@@ -643,7 +643,7 @@
             </xsl:call-template>
           </td>
           <td class="list_item_body">
-            <xsl:value-of select="./title[contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)]"/>
+            <xsl:value-of select="./title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/>
           </td>
         </tr>
       </xsl:for-each>
@@ -657,7 +657,7 @@
 <xsl:template match="language-table[@show!='yes']">
 </xsl:template>
 <xsl:template match="language-table[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="language-table-run"/>
   </xsl:if>
 </xsl:template>
@@ -887,7 +887,7 @@
 <xsl:template match="language-list[@show!='yes']">
 </xsl:template>
 <xsl:template match="language-list[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="language-list-run"/>
   </xsl:if>
 </xsl:template>
@@ -940,7 +940,7 @@
 <xsl:template match="labeled-list[@show!='yes']">
 </xsl:template>
 <xsl:template match="labeled-list[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="labeled-list-run"/>
   </xsl:if>
 </xsl:template>
@@ -995,7 +995,7 @@
 <xsl:template match="list[@show!='yes']">
 </xsl:template>
 <xsl:template match="list[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="list-run"/>
   </xsl:if>
 </xsl:template>
@@ -1039,7 +1039,7 @@
 <xsl:template match="signature[@show!='yes']">
 </xsl:template>
 <xsl:template match="signature[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="signature-run"/>
   </xsl:if>
 </xsl:template>
@@ -1074,7 +1074,7 @@
 <xsl:template match="publications[@show!='yes']">
 </xsl:template>
 <xsl:template match="publications[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="publications-run"/>
   </xsl:if>
 </xsl:template>
@@ -1175,7 +1175,7 @@
 <xsl:template match="computer-knowledge[@show!='yes']">
 </xsl:template>
 <xsl:template match="computer-knowledge[@show='yes' or not(@show)]">
-  <xsl:if test="not(@role) or contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' '))">
+  <xsl:if test="(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))">
     <xsl:call-template name="computer-knowledge-run"/>
   </xsl:if>
 </xsl:template>
