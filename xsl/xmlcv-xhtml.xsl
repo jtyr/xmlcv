@@ -157,8 +157,22 @@
   </xsl:if>
 </xsl:template>
 <xsl:template name="personal-run">
+  <!-- size of address element -->
+  <xsl:variable name="address_size">
+    <xsl:choose>
+      <xsl:when test="address/postcode and address/city">
+        <xsl:value-of select="count(child::address/*) - 2"/>
+      </xsl:when>
+      <xsl:when test="address">
+        <xsl:value-of select="count(child::address/*) - 1"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>0</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <!-- get number of lines in personal table -->
-  <xsl:variable name="personal_length" select="count(child::*) + count(child::address/*) - 1"/>
+  <xsl:variable name="personal_length" select="count(child::*) + $address_size"/>
   <!-- get photo url -->
   <xsl:variable name="photo_url" select="./@photo-url"/>
   <!-- get photo height -->
@@ -191,181 +205,196 @@
       </td>
     </tr>
 
-    <!-- address -->
-    <xsl:if test="./address">
-      <tr>
-        <td class="personal_table_cell_label" rowspan="{count(child::address/*) - 1}"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template></td>
-        <xsl:choose>
-          <xsl:when test="string-length(./address/residence)">
-            <td class="personal_table_cell_text"><xsl:value-of select="./address/residence"/></td>
-          </xsl:when>
-          <xsl:otherwise>
-            <td class="personal_table_cell_text"><xsl:value-of select="./address/street"/></td>
-          </xsl:otherwise>
-        </xsl:choose>
-      </tr>
-      <xsl:if test="string-length(./address/residence)">
-        <tr>
-          <td class="personal_table_cell_text"><xsl:value-of select="./address/street"/></td>
-        </tr>
-      </xsl:if>
-      <tr>
-        <td class="personal_table_cell_text"><xsl:value-of select="concat(./address/postcode, '  ', ./address/city)"/></td>
-      </tr>
-      <xsl:if test="string-length(./address/country)">
-        <tr>
-          <td class="personal_table_cell_text"><xsl:value-of select="./address/country"/></td>
-        </tr>
-      </xsl:if>
-    </xsl:if>
+    <xsl:apply-templates/>
 
-    <!-- telephone -->
-    <xsl:for-each select="./telephone">
-      <tr>
-        <td class="personal_table_cell_label">
-          <xsl:choose>
-            <xsl:when test="string-length(@mobile) and @mobile = 'yes'">
-              <xsl:choose>
-                <xsl:when test="string-length(@type) and @type = 'private'">
-                  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_mobile_private'"/></xsl:call-template>
-                </xsl:when>
-                <xsl:when test="string-length(@type) and @type = 'office'">
-                  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_mobile_office'"/></xsl:call-template>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_mobile'"/></xsl:call-template>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:choose>
-                <xsl:when test="string-length(@type) and @type = 'private'">
-                  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_telephone_private'"/></xsl:call-template>
-                </xsl:when>
-                <xsl:when test="string-length(@type) and @type = 'office'">
-                  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_telephone_office'"/></xsl:call-template>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_telephone'"/></xsl:call-template>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:otherwise>
-          </xsl:choose>
-        </td>
-        <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
-      </tr>
-    </xsl:for-each>
+  </table>
+</xsl:template>
 
-    <!-- fax -->
-    <xsl:for-each select="./fax">
-      <tr>
-        <td class="personal_table_cell_label">
+
+<!-- address -->
+<xsl:template match="personal/address">
+  <tr>
+    <td class="personal_table_cell_label" rowspan="{count(child::*) - 1}"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template></td>
+    <xsl:choose>
+      <xsl:when test="string-length(./residence)">
+        <td class="personal_table_cell_text"><xsl:value-of select="./residence"/></td>
+      </xsl:when>
+      <xsl:otherwise>
+        <td class="personal_table_cell_text"><xsl:value-of select="./street"/></td>
+      </xsl:otherwise>
+    </xsl:choose>
+  </tr>
+  <xsl:if test="string-length(./residence)">
+    <tr>
+      <td class="personal_table_cell_text"><xsl:value-of select="./street"/></td>
+    </tr>
+  </xsl:if>
+  <tr>
+    <td class="personal_table_cell_text"><xsl:value-of select="concat(./postcode, '  ', ./city)"/></td>
+  </tr>
+  <xsl:if test="string-length(./country)">
+    <tr>
+      <td class="personal_table_cell_text"><xsl:value-of select="./country"/></td>
+    </tr>
+  </xsl:if>
+</xsl:template>
+
+
+<!-- telephone -->
+<xsl:template match="personal/telephone">
+  <tr>
+    <td class="personal_table_cell_label">
+      <xsl:choose>
+        <xsl:when test="string-length(@mobile) and @mobile = 'yes'">
           <xsl:choose>
             <xsl:when test="string-length(@type) and @type = 'private'">
-              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_private'"/></xsl:call-template>
+              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_mobile_private'"/></xsl:call-template>
             </xsl:when>
             <xsl:when test="string-length(@type) and @type = 'office'">
-              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_office'"/></xsl:call-template>
+              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_mobile_office'"/></xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax'"/></xsl:call-template>
+              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_mobile'"/></xsl:call-template>
             </xsl:otherwise>
           </xsl:choose>
-        </td>
-        <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
-      </tr>
-    </xsl:for-each>
-
-    <!-- email -->
-    <xsl:if test="string-length(./email)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text">
-          <a href="{concat('mailto:', ./email)}">
-            <xsl:value-of select="./email"/>
-          </a>
-        </td>
-      </tr>
-    </xsl:if>
-
-    <!-- PGP key ID -->
-    <xsl:if test="string-length(./pgp-id)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_pgpid'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text"><xsl:value-of select="./pgp-id"/></td>
-      </tr>
-    </xsl:if>
-
-    <!-- im -->
-    <xsl:if test="string-length(./im)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:value-of select="./im/@type"/>:</td>
-        <td class="personal_table_cell_text"><xsl:value-of select="./im"/></td>
-      </tr>
-    </xsl:if>
-
-    <!-- homepage -->
-    <xsl:if test="string-length(./homepage)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_homepage'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text"><a rel="external" href="{./homepage}"><xsl:value-of select="./homepage"/></a></td>
-      </tr>
-    </xsl:if>
-
-    <!-- nationality -->
-    <xsl:if test="string-length(./nationality)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_nationality'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text"><xsl:value-of select="./nationality"/></td>
-      </tr>
-    </xsl:if>
-
-    <!-- birthday -->
-    <xsl:if test="string-length(./birthday)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_birthday'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text">
-          <xsl:call-template name="getDateFormat">
-            <xsl:with-param name="format"><xsl:call-template name="getText"><xsl:with-param name="id" select="'full_date_format'"/></xsl:call-template></xsl:with-param>
-            <xsl:with-param name="date" select="./birthday"/>
-          </xsl:call-template>
-        </td>
-      </tr>
-    </xsl:if>
-
-    <!-- age -->
-    <xsl:if test="string-length(./age)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_age'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text"><xsl:value-of select="./age"/></td>
-      </tr>
-    </xsl:if>
-
-    <!-- gender -->
-    <xsl:if test="string-length(./gender/@type)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text">
+        </xsl:when>
+        <xsl:otherwise>
           <xsl:choose>
-            <xsl:when test="./gender/@type = 'F' or ./gender/@type = 'f'">
-              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_female'"/></xsl:call-template>
+            <xsl:when test="string-length(@type) and @type = 'private'">
+              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_telephone_private'"/></xsl:call-template>
+            </xsl:when>
+            <xsl:when test="string-length(@type) and @type = 'office'">
+              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_telephone_office'"/></xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_male'"/></xsl:call-template>
+              <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_telephone'"/></xsl:call-template>
             </xsl:otherwise>
           </xsl:choose>
-        </td>
-      </tr>
-    </xsl:if>
+        </xsl:otherwise>
+      </xsl:choose>
+    </td>
+    <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
+  </tr>
+</xsl:template>
 
-    <!-- status -->
-    <xsl:if test="string-length(./status)">
-      <tr>
-        <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_merital_status'"/></xsl:call-template></td>
-        <td class="personal_table_cell_text"><xsl:value-of select="./status"/></td>
-      </tr>
-    </xsl:if>
-  </table>
+
+<!-- fax -->
+<xsl:template match="personal/fax">
+  <tr>
+    <td class="personal_table_cell_label">
+      <xsl:choose>
+        <xsl:when test="string-length(@type) and @type = 'private'">
+          <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_private'"/></xsl:call-template>
+        </xsl:when>
+        <xsl:when test="string-length(@type) and @type = 'office'">
+          <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_office'"/></xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax'"/></xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </td>
+    <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
+  </tr>
+</xsl:template>
+
+
+<!-- email -->
+<xsl:template match="personal/email">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text">
+      <a href="{concat('mailto:', .)}">
+        <xsl:value-of select="."/>
+      </a>
+    </td>
+  </tr>
+</xsl:template>
+
+
+<!-- PGP key ID -->
+<xsl:template match="personal/pgp-id">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_pgpid'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
+  </tr>
+</xsl:template>
+
+
+<!-- im -->
+<xsl:template match="personal/im">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:value-of select="@type"/>:</td>
+    <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
+  </tr>
+</xsl:template>
+
+
+<!-- homepage -->
+<xsl:template match="personal/homepage">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_homepage'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text"><a rel="external" href="{./homepage}"><xsl:value-of select="."/></a></td>
+  </tr>
+</xsl:template>
+
+
+<!-- nationality -->
+<xsl:template match="personal/nationality">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_nationality'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
+  </tr>
+</xsl:template>
+
+
+<!-- birthday -->
+<xsl:template match="personal/birthday">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_birthday'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text">
+      <xsl:call-template name="getDateFormat">
+        <xsl:with-param name="format"><xsl:call-template name="getText"><xsl:with-param name="id" select="'full_date_format'"/></xsl:call-template></xsl:with-param>
+        <xsl:with-param name="date" select="."/>
+      </xsl:call-template>
+    </td>
+  </tr>
+</xsl:template>
+
+
+<!-- age -->
+<xsl:template match="personal/age">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_age'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
+  </tr>
+</xsl:template>
+
+
+<!-- gender -->
+<xsl:template match="personal/gender">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text">
+      <xsl:choose>
+        <xsl:when test="@type = 'F' or @type = 'f'">
+          <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_female'"/></xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_male'"/></xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </td>
+  </tr>
+</xsl:template>
+
+
+<!-- status -->
+<xsl:template match="personal/status">
+  <tr>
+    <td class="personal_table_cell_label"><xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_merital_status'"/></xsl:call-template></td>
+    <td class="personal_table_cell_text"><xsl:value-of select="."/></td>
+  </tr>
 </xsl:template>
 
 

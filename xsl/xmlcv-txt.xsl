@@ -132,31 +132,42 @@
 <xsl:template name="personal-run">
   <!-- get middlename -->
   <xsl:variable name="middlename">
-    <xsl:if test="string-length(./name/middlename)">
-      <xsl:value-of select="concat(./name/middlename, ' ')"/>
+    <xsl:if test="string-length(./middlename)">
+      <xsl:value-of select="concat(./middlename, ' ')"/>
     </xsl:if>
   </xsl:variable>
 
-  <!-- name -->
   <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_name'"/></xsl:call-template>
-  <xsl:value-of select="concat(' ', ./name/firstname, ' ', $middlename, ./name/lastname)"/>
+  <xsl:value-of select="concat(' ', ./firstname, ' ', $middlename, ./lastname)"/>
   <xsl:call-template name="printNewLine"/>
 
-  <!-- address -->
-  <xsl:if test="./address">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template>
-    <xsl:if test="string-length(./address/residence)">
-      <xsl:value-of select="concat(' ', ./address/residence, ',')"/>
-    </xsl:if>
-    <xsl:value-of select="concat(' ', ./address/street, ', ', ./address/postcode, ' ', ./address/city)"/>
-    <xsl:if test="string-length(./address/country)">
-      <xsl:value-of select="concat(', ', ./address/country)"/>
-    </xsl:if>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
+  <xsl:apply-templates/>
 
-  <!-- telephone -->
-  <xsl:for-each select="./telephone">
+  <xsl:call-template name="printNewLine"><xsl:with-param name="count" select="2"/></xsl:call-template>
+</xsl:template>
+
+
+<!-- name -->
+<xsl:template match="personal/name">
+</xsl:template>
+
+
+<!-- address -->
+<xsl:template match="personal/address">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_address'"/></xsl:call-template>
+  <xsl:if test="string-length(./residence)">
+    <xsl:value-of select="concat(' ', ./residence, ',')"/>
+  </xsl:if>
+  <xsl:value-of select="concat(' ', ./street, ', ', ./postcode, ' ', ./city)"/>
+  <xsl:if test="string-length(./country)">
+    <xsl:value-of select="concat(', ', ./country)"/>
+  </xsl:if>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
+
+
+<!-- telephone -->
+<xsl:template match="personal/telephone">
     <xsl:choose>
       <xsl:when test="string-length(@mobile) and @mobile = 'yes'">
         <xsl:choose>
@@ -186,102 +197,109 @@
       </xsl:otherwise>
     </xsl:choose>
     <xsl:value-of select="concat(' ', .)"/>
-  </xsl:for-each>
   <xsl:call-template name="printNewLine"/>
+</xsl:template>
 
-  <!-- fax -->
-  <xsl:for-each select="./fax">
-    <xsl:choose>
-      <xsl:when test="string-length(@type) and @type = 'private'">
-        <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_private'"/></xsl:call-template>
-      </xsl:when>
-      <xsl:when test="string-length(@type) and @type = 'office'">
-        <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_office'"/></xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax'"/></xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:value-of select="concat(' ', .)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:for-each>
 
-  <!-- email -->
-  <xsl:if test="string-length(./email)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template>
-    <xsl:value-of select="concat(' ', ./email)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
+<!-- fax -->
+<xsl:template match="personal/fax">
+  <xsl:choose>
+    <xsl:when test="string-length(@type) and @type = 'private'">
+      <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_private'"/></xsl:call-template>
+    </xsl:when>
+    <xsl:when test="string-length(@type) and @type = 'office'">
+      <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax_office'"/></xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_fax'"/></xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:value-of select="concat(' ', .)"/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
 
-  <!-- PGP key ID -->
-  <xsl:if test="string-length(./pgp-id)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_pgpid'"/></xsl:call-template>
-    <xsl:value-of select="concat(' ', ./pgp-id)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
 
-  <!-- im -->
-  <xsl:if test="string-length(./im)">
-    <xsl:value-of select="./im/@type"/>
-    <xsl:value-of select="concat(': ', ./im)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
+<!-- email -->
+<xsl:template match="personal/email">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_email'"/></xsl:call-template>
+  <xsl:value-of select="concat(' ', .)"/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
 
-  <!-- homepage -->
-  <xsl:if test="string-length(./homepage)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_homepage'"/></xsl:call-template>
-    <xsl:value-of select="concat(' ', ./homepage)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
 
-  <!-- nationality -->
-  <xsl:if test="string-length(./nationality)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_nationality'"/></xsl:call-template>
-    <xsl:value-of select="concat(' ', ./nationality)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
+<!-- PGP key ID -->
+<xsl:template match="personal/pgp-id">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_pgpid'"/></xsl:call-template>
+  <xsl:value-of select="concat(' ', .)"/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
 
-  <!-- birthday -->
-  <xsl:if test="string-length(./birthday)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_birthday'"/></xsl:call-template>
-    <xsl:text> </xsl:text>
-    <xsl:call-template name="getDateFormat">
-      <xsl:with-param name="format"><xsl:call-template name="getText"><xsl:with-param name="id" select="'full_date_format'"/></xsl:call-template></xsl:with-param>
-      <xsl:with-param name="date" select="./birthday"/>
-    </xsl:call-template>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
 
-  <!-- age -->
-  <xsl:if test="string-length(./age)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_age'"/></xsl:call-template>
-    <xsl:value-of select="concat(' ', ./age)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
+<!-- im -->
+<xsl:template match="personal/im">
+  <xsl:value-of select="./im/@type"/>
+  <xsl:value-of select="concat(': ', .)"/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
 
-  <!-- gender -->
-  <xsl:if test="string-length(./gender/@type)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender'"/></xsl:call-template>
-    <xsl:text> </xsl:text>
-    <xsl:choose>
-      <xsl:when test="./gender/@type = 'F' or ./gender/@type = 'f'">
-        <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_female'"/></xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_male'"/></xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
 
-  <!-- status -->
-  <xsl:if test="string-length(./status)">
-    <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_merital_status'"/></xsl:call-template>
-    <xsl:value-of select="concat(' ', ./status)"/>
-    <xsl:call-template name="printNewLine"/>
-  </xsl:if>
+<!-- homepage -->
+<xsl:template match="personal/homepage">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_homepage'"/></xsl:call-template>
+  <xsl:value-of select="concat(' ', .)"/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
 
-  <xsl:call-template name="printNewLine"><xsl:with-param name="count" select="2"/></xsl:call-template>
+
+<!-- nationality -->
+<xsl:template match="personal/nationality">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_nationality'"/></xsl:call-template>
+  <xsl:value-of select="concat(' ', .)"/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
+
+
+<!-- birthday -->
+<xsl:template match="personal/birthday">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_birthday'"/></xsl:call-template>
+  <xsl:text> </xsl:text>
+  <xsl:call-template name="getDateFormat">
+    <xsl:with-param name="format"><xsl:call-template name="getText"><xsl:with-param name="id" select="'full_date_format'"/></xsl:call-template></xsl:with-param>
+    <xsl:with-param name="date" select="."/>
+  </xsl:call-template>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
+
+
+<!-- age -->
+<xsl:template match="personal/age">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_age'"/></xsl:call-template>
+  <xsl:value-of select="concat(' ', .)"/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
+
+
+<!-- gender -->
+<xsl:template match="personal/gender">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender'"/></xsl:call-template>
+  <xsl:text> </xsl:text>
+  <xsl:choose>
+    <xsl:when test="@type = 'F' or @type = 'f'">
+      <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_female'"/></xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_gender_male'"/></xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
+
+
+<!-- status -->
+<xsl:template match="personal/status">
+  <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_merital_status'"/></xsl:call-template>
+  <xsl:value-of select="concat(' ', .)"/>
+  <xsl:call-template name="printNewLine"/>
 </xsl:template>
 
 
