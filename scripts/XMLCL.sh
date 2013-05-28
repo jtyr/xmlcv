@@ -35,7 +35,7 @@ if [ -z ${OUT} ]; then
 fi
 
 # Include commons
-source '../../xmlcv-0.4/scripts/commons.sh'
+source '../../xmlcv/scripts/commons.sh'
 
 # Generate input parameters for XSL template
 if [[ -n ${RECIPIENT} && ${#RECIPIENT} ]]; then RECIPIENT_P="recipient=\"${RECIPIENT}\""; fi

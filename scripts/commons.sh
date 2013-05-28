@@ -9,7 +9,7 @@
 #####
 
 # Default path to the root of the XMLCV project
-if [ -z ${MAIN_PATH} ]; then MAIN_PATH='../../xmlcv-0.4'; fi
+if [ -z ${MAIN_PATH} ]; then MAIN_PATH='../../xmlcv'; fi
 
 # Default project name
 if [ -z ${PROJECT} ]; then PROJECT='cv'; fi
