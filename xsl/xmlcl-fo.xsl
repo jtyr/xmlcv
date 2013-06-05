@@ -48,7 +48,7 @@
       <xsl:if test="$show_footer = 'yes'">
         <fo:static-content flow-name="footer" xsl:use-attribute-sets="footer">
           <fo:block>
-            <fo:basic-link external-destination="http://xmlcv.sourceforge.net"><xsl:call-template name="getText"><xsl:with-param name="id" select="'generated_by'"/></xsl:call-template></fo:basic-link>
+            <fo:basic-link external-destination="http://jtyr.github.io/xmlcv/"><xsl:call-template name="getText"><xsl:with-param name="id" select="'generated_by'"/></xsl:call-template></fo:basic-link>
           </fo:block>
         </fo:static-content>
       </xsl:if>

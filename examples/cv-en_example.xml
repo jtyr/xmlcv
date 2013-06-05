@@ -72,7 +72,7 @@
     <!-- attribute type="[ICQ|MSN|Jabber|AIM|Yahoo!|Skype|...]" -->
     <im type="ICQ">123456789</im>
     <!-- optional -->
-    <homepage>http://xmlcv.sourceforge.net</homepage>
+    <homepage>http://jtyr.github.io/xmlcv/</homepage>
     <!-- optional -->
     <nationality>Some nationality</nationality>
     <!-- optional -->

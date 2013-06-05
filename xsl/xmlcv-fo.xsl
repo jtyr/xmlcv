@@ -59,7 +59,7 @@
               <xsl:value-of select="concat(/cv/personal/name/firstname, ' ', $middlename, /cv/personal/name/lastname)"/>
             </fo:inline>
             <fo:leader leader-pattern="space"/>
-            <fo:inline><fo:basic-link external-destination="http://xmlcv.sourceforge.net"><xsl:call-template name="getText"><xsl:with-param name="id" select="'generated_by'"/></xsl:call-template></fo:basic-link></fo:inline>
+            <fo:inline><fo:basic-link external-destination="http://jtyr.github.io/xmlcv/"><xsl:call-template name="getText"><xsl:with-param name="id" select="'generated_by'"/></xsl:call-template></fo:basic-link></fo:inline>
             <fo:leader leader-pattern="space"/>
             <fo:inline xsl:use-attribute-sets="footer.right">
               <xsl:call-template name="getText"><xsl:with-param name="id" select="'page_number'"/></xsl:call-template>

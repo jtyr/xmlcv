@@ -98,7 +98,7 @@
 
   <xsl:variable name="footer">
     <xsl:call-template name="getText"><xsl:with-param name="id" select="'generated_by'"/></xsl:call-template>
-    <xsl:text> (http://xmlcv.sourceforge.net) - </xsl:text>
+    <xsl:text> (http://jtyr.github.io/xmlcv/) - </xsl:text>
     <xsl:call-template name="getDateFormat">
       <xsl:with-param name="format"><xsl:call-template name="getText"><xsl:with-param name="id" select="'full_date_format'"/></xsl:call-template></xsl:with-param>
       <xsl:with-param name="date" select="$current_date"/>

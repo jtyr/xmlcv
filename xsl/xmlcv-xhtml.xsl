@@ -104,7 +104,7 @@
 
         <xsl:apply-templates/>
 
-        <div class="generated_by"><a rel="external" href="http://xmlcv.sourceforge.net"><xsl:call-template name="getText"><xsl:with-param name="id" select="'generated_by'"/></xsl:call-template></a></div>
+        <div class="generated_by"><a rel="external" href="http://jtyr.github.io/xmlcv/"><xsl:call-template name="getText"><xsl:with-param name="id" select="'generated_by'"/></xsl:call-template></a></div>
 
       </div>
 
