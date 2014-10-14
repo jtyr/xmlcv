@@ -132,13 +132,13 @@
 <xsl:template name="personal-run">
   <!-- get middlename -->
   <xsl:variable name="middlename">
-    <xsl:if test="string-length(./middlename)">
-      <xsl:value-of select="concat(./middlename, ' ')"/>
+    <xsl:if test="string-length(./name/middlename)">
+      <xsl:value-of select="concat(./name/middlename, ' ')"/>
     </xsl:if>
   </xsl:variable>
 
   <xsl:call-template name="getText"><xsl:with-param name="id" select="'personal_name'"/></xsl:call-template>
-  <xsl:value-of select="concat(' ', ./firstname, ' ', $middlename, ./lastname)"/>
+  <xsl:value-of select="concat(' ', ./name/firstname, ' ', $middlename, ./name/lastname)"/>
   <xsl:call-template name="printNewLine"/>
 
   <xsl:apply-templates/>
