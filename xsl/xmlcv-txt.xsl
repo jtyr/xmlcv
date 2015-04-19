@@ -111,6 +111,7 @@
   </xsl:call-template>
 
   <xsl:value-of select="$footer"/>
+  <xsl:call-template name="printNewLine"/>
 </xsl:template>
 
 
