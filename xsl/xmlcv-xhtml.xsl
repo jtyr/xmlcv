@@ -1442,6 +1442,14 @@
 </xsl:template>
 
 
+<!-- link -->
+<xsl:template match="a">
+  <a href="{@href}">
+    <xsl:apply-templates/>
+  </a>
+</xsl:template>
+
+
 <!-- copy any text node beneath text or description -->
 <xsl:template match="text//text()">
   <xsl:copy-of select="." />

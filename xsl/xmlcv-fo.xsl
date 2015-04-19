@@ -1667,6 +1667,16 @@
 </xsl:template>
 
 
+<!-- link -->
+<xsl:template match="a">
+  <fo:inline>
+    <fo:basic-link xsl:use-attribute-sets="link" external-destination="{@href}">
+      <xsl:apply-templates/>
+    </fo:basic-link>
+  </fo:inline>
+</xsl:template>
+
+
 <!-- filter any other text -->
 <xsl:template match="text()">
 </xsl:template>
