@@ -2,7 +2,7 @@
 
 <!DOCTYPE fop [
 <!ENTITY fop.home "file:///etc/xml/fop/">
-<!ENTITY fonts.dir "file:///usr/share/fonts/corefonts">
+<!ENTITY fonts.dir "file:///usr/share/fonts/TTF">
 ]>
 
 <!-- NOTE: This is the version of the configuration -->
@@ -18,7 +18,7 @@
   <base>./</base>
   
   <!-- Font Base URL for resolving relative font URLs -->
-  <font-base>/usr/share/fonts/TTF_my</font-base>
+  <font-base>/usr/share/fonts/TTF</font-base>
 
   <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
   <source-resolution>72</source-resolution>
