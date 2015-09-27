@@ -627,6 +627,7 @@
               </xsl:if>
 
               <fo:block margin-bottom="4pt"/>
+              <fo:block/>
 
             </fo:block>
           </fo:list-item-body>
