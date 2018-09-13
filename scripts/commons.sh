@@ -43,9 +43,9 @@ if [ -z ${SRC_LANG} ]; then SRC_LANG='en'; fi
 if [ -z ${SRC} ]; then SRC="${SRC_PATH}/${PROJECT}-${SRC_LANG}.xml"; fi
 
 # Default role
-if [[ -n ${ROLE} && ${#ROLE} ]]; then ROLE_P="role=\"${ROLE}\""; fi
+if [[ -n ${ROLE} && ${#ROLE} ]]; then ROLE_P="role=${ROLE}"; fi
 # Default role2
-if [[ -n ${ROLE2} && ${#ROLE2} ]]; then ROLE_P="${ROLE_P} role2=\"${ROLE2}\""; fi
+if [[ -n ${ROLE2} && ${#ROLE2} ]]; then ROLE_P="${ROLE_P} role2=${ROLE2}"; fi
 
 # Default output path
 if [ -z ${OUT_PATH} ]; then OUT_PATH='.'; fi
@@ -68,14 +68,15 @@ function generate() {
 		${XMLLINT} --noout --relaxng ${RNG} ${SRC}
 	elif [ ${OUT_FORMAT,,} == 'pdf' ]; then
 		echo '### Generating PDF file:'
-		${SAXON} -o ${OUT}.fo ${SRC} ${XSL_FO} ${DATE} ${XSLT_INPUT_P} && ${FOP} -c ${FOP_CONF} -fo ${OUT}.fo -pdf ${OUT}.pdf
+		${SAXON} -o:${OUT}.fo ${SRC} ${XSL_FO} ${DATE} ${XSLT_INPUT_P}
+		${FOP} -c ${FOP_CONF} -fo ${OUT}.fo -pdf ${OUT}.pdf
 		rm -f ${OUT}.fo
 	elif [[ ${OUT_FORMAT,,} == 'txt' || ${OUT_FORMAT,,} == 'email' ]]; then
 		echo '### Generating TXT file:'
-		${SAXON} -o ${OUT}.txt ${SRC} ${XSL_TXT} ${DATE} ${XSLT_INPUT_P}
+		${SAXON} -o:${OUT}.txt ${SRC} ${XSL_TXT} ${DATE} ${XSLT_INPUT_P}
 	elif [[ ${OUT_FORMAT,,} == 'html' || ${OUT_FORMAT,,} == 'xhtml' ]]; then
 		echo '### Generating HTML file:'
-		${SAXON} -o ${OUT}.html ${SRC} ${XSL_XHTML} ${DATE} ${XSLT_INPUT_P}
+		${SAXON} -o:${OUT}.html ${SRC} ${XSL_XHTML} ${DATE} ${XSLT_INPUT_P}
 		# Tide up the code
 		if [ -e '/usr/bin/tidy' ]; then
 			/usr/bin/tidy -utf8 -iqm -w 0 ${OUT}.html 2>/dev/null
@@ -83,7 +84,7 @@ function generate() {
 		# Replace the CSS and IMG references by Base64 string (only local files)
 		perl -pi -e 's/(<link (.[^>]*|)href=")(.[^"]+)"/"$1data:text\/css;base64,".`base64 -w 0 $3`."\""/ge' ${OUT}.html
 		perl -pi -e 's/(<img (.[^>]*|)src=")(.[^.]+)\.(.[^"]+)"/"$1data:image\/$4;base64,".`base64 -w 0 $3.$4`."\""/ge' ${OUT}.html
-		# Change newslines to Windows format CR+LF
+		# Change newlines to Windows format CR+LF
 		perl -pi -e 's/\n/\r\n/g' ${OUT}.html
 	else
 		echo 'Unknown output format!'
