@@ -26,8 +26,8 @@ done automatically by XSL template.
 Requirements
 ============
 
-* XSLT Processor (Saxon-6.5.x, xsltproc, ...)
-* FO Processor (FOP-0.9x, XSL Formatter, ...)
+* XSLT v1 Processor (Saxon-9.8.7+, xsltproc, ...)
+* FO Processor (FOP-0.9x+, XSL Formatter, ...)
 * XML Syntax Validator (xmllint, jing, ...) = optional
 
 
