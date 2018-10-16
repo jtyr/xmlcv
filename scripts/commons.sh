@@ -51,8 +51,10 @@ if [[ -n ${ROLE2} && ${#ROLE2} ]]; then ROLE_P="${ROLE_P} role2=${ROLE2}"; fi
 if [ -z ${OUT_PATH} ]; then OUT_PATH='.'; fi
 # Default output label
 if [[ -n ${OUT_LABEL} ]]; then OUT_LABEL="_${OUT_LABEL}"; fi
+# Default output language
+if [ -z ${OUT_LANG+x} ]; then OUT_LANG="-${SRC_LANG}"; fi
 # Default output file
-if [ -z ${OUT} ]; then OUT="${OUT_PATH}/${PROJECT}-${SRC_LANG}${OUT_LABEL}"; fi
+if [ -z ${OUT} ]; then OUT="${OUT_PATH}/${PROJECT}${OUT_LANG}${OUT_LABEL}"; fi
 
 # Output format
 if [[ -n $1 && -z ${OUT_FORMAT} ]]; then OUT_FORMAT="$1"; fi
