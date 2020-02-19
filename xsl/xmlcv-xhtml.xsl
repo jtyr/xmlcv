@@ -460,7 +460,7 @@
 
     <table class="list_block">
       <xsl:for-each select="./experience[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]">
-        <xsl:sort select="concat(substring(./interval/start, 4, 4), substring(./interval/start, 1, 2))" order="descending"/>
+        <xsl:sort select="substring(concat(substring(./interval/end, 4, 4), substring(./interval/end, 1, 2), '999999'), 1, 6)" order="descending"/>
 
         <tr class="list_item_row">
           <td class="list_item_label">
