@@ -5,7 +5,7 @@
   **********************************************************
   ** Description: TXT stylesheet for XMLCV
   **
-  ** (c) Jiri Tyr 2011
+  ** (c) Jiri Tyr 2011-2020
   **********************************************************
   -->
 
@@ -791,7 +791,7 @@
     <xsl:when test="string-length(@sort) and @sort = 'no'">
       <xsl:for-each select="./item">
         <xsl:value-of select="concat(./label, $labeled_list_separator)"/>
-        <xsl:value-of select="./value"/>
+        <xsl:apply-templates select="./value"/>
         <xsl:call-template name="printNewLine"/>
       </xsl:for-each>
     </xsl:when>
@@ -799,7 +799,7 @@
       <xsl:for-each select="./item">
         <xsl:sort select="./label"/>
         <xsl:value-of select="concat(./label, $labeled_list_separator)"/>
-        <xsl:value-of select="./value"/>
+        <xsl:apply-templates select="./value"/>
         <xsl:call-template name="printNewLine"/>
       </xsl:for-each>
     </xsl:otherwise>

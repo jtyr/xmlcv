@@ -5,7 +5,7 @@
   **********************************************************
   ** Description: FO stylesheet for XMLCV
   **
-  ** (c) Jiri Tyr 2008-2011
+  ** (c) Jiri Tyr 2008-2020
   **********************************************************
   -->
 
@@ -172,6 +172,11 @@
 
     </fo:table-body>
   </fo:table>
+</xsl:template>
+
+
+<!-- name -->
+<xsl:template match="personal/name">
 </xsl:template>
 
 
@@ -1087,7 +1092,7 @@
               <fo:list-item-body xsl:use-attribute-sets="list.item.body">
                 <fo:block text-align="justify">
                   <xsl:value-of select="$labeled_list_separator"/>
-                  <xsl:value-of select="./value"/>
+                  <xsl:apply-templates select="./value"/>
                 </fo:block>
               </fo:list-item-body>
             </fo:list-item>
@@ -1108,7 +1113,7 @@
               <fo:list-item-body xsl:use-attribute-sets="list.item.body">
                 <fo:block text-align="justify">
                   <xsl:value-of select="$labeled_list_separator"/>
-                  <xsl:value-of select="./value"/>
+                  <xsl:apply-templates select="./value"/>
                 </fo:block>
               </fo:list-item-body>
             </fo:list-item>
@@ -1680,6 +1685,7 @@
 
 <!-- filter any other text -->
 <xsl:template match="text()">
+  <xsl:copy-of select="." />
 </xsl:template>
 
 

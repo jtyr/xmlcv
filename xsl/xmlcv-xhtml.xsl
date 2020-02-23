@@ -5,7 +5,7 @@
   **********************************************************
   ** Description: XHTML stylesheet for XMLCV
   **
-  ** (c) Jiri Tyr 2008-2011
+  ** (c) Jiri Tyr 2008-2020
   **********************************************************
   -->
 
@@ -208,6 +208,11 @@
     <xsl:apply-templates/>
 
   </table>
+</xsl:template>
+
+
+<!-- name -->
+<xsl:template match="personal/name">
 </xsl:template>
 
 
@@ -965,7 +970,7 @@
               </td>
               <td class="list_item_body">
                 <xsl:value-of select="$labeled_list_separator"/>
-                <xsl:value-of select="./value"/>
+                <xsl:apply-templates select="./value"/>
               </td>
             </tr>
           </xsl:for-each>
@@ -979,7 +984,7 @@
               </td>
               <td class="list_item_body">
                 <xsl:value-of select="$labeled_list_separator"/>
-                <xsl:value-of select="./value"/>
+                <xsl:apply-templates select="./value"/>
               </td>
             </tr>
           </xsl:for-each>
@@ -1461,6 +1466,7 @@
 
 <!-- filter any other text -->
 <xsl:template match="text()">
+  <xsl:copy-of select="." />
 </xsl:template>
 
 
