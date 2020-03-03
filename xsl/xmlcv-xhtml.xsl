@@ -485,6 +485,9 @@
             <xsl:if test="./employer">
               <div class="experience_employer">
                 <xsl:choose>
+                  <xsl:when test="string-length(./employer/label)">
+                    <xsl:value-of select="./employer/label"/>
+                  </xsl:when>
                   <xsl:when test="string-length(./employer/person)">
                     <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_responsible'"/></xsl:call-template>
                   </xsl:when>
