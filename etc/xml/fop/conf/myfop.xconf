@@ -40,21 +40,21 @@
 
       <fonts>
         <!-- embedded fonts -->
-        <font metrics-url="&fop.home;/font/arial.xml" kerning="no" embed-url="&fonts.dir;/arial.ttf">
+        <font metrics-url="&fop.home;/font/arial.xml" kerning="no" embed-url="&fonts.dir;/Arial.TTF">
           <font-triplet name="Arial" style="normal" weight="normal"/>
           <font-triplet name="sans-serif" style="normal" weight="normal"/>
         </font>
-        <font metrics-url="&fop.home;/font/ariali.xml" kerning="no" embed-url="&fonts.dir;/ariali.ttf">
+        <font metrics-url="&fop.home;/font/arialbd.xml" kerning="no" embed-url="&fonts.dir;/Arialbd.TTF">
+          <font-triplet name="Arial" style="normal" weight="bold"/>
+          <font-triplet name="sans-serif" style="normal" weight="bold"/>
+        </font>
+        <font metrics-url="&fop.home;/font/ariali.xml" kerning="no" embed-url="&fonts.dir;/Ariali.TTF">
           <font-triplet name="Arial" style="italic" weight="normal"/>
           <font-triplet name="sans-serif" style="italic" weight="normal"/>
         </font>
-        <font metrics-url="&fop.home;/font/arialbi.xml" kerning="no" embed-url="&fonts.dir;/arialbi.ttf">
+        <font metrics-url="&fop.home;/font/arialbi.xml" kerning="no" embed-url="&fonts.dir;/Arialbi.TTF">
           <font-triplet name="Arial" style="italic" weight="bold"/>
           <font-triplet name="sans-serif" style="italic" weight="bold"/>
-        </font>
-        <font metrics-url="&fop.home;/font/arialbd.xml" kerning="no" embed-url="&fonts.dir;/arialbd.ttf">
-          <font-triplet name="Arial" style="normal" weight="bold"/>
-          <font-triplet name="sans-serif" style="normal" weight="bold"/>
         </font>
       </fonts>
     </renderer>
