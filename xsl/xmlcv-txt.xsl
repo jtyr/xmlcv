@@ -1219,10 +1219,14 @@
         </xsl:call-template>
       </td>
       <td class="interval_separator">
-        <xsl:call-template name="getText"><xsl:with-param name="id" select="'interval_dash'"/></xsl:call-template>
+        <xsl:if test="string-length($interval/end) = 0 or $interval/end != $interval/start">
+          <xsl:call-template name="getText"><xsl:with-param name="id" select="'interval_dash'"/></xsl:call-template>
+        </xsl:if>
       </td>
       <td class="interval_side_cell">
         <xsl:choose>
+          <!-- if the END is the same as the START -->
+          <xsl:when test="$interval/end = $interval/start"></xsl:when>
           <!-- if the END is presented -->
           <xsl:when test="string-length($interval/end)">
             <xsl:call-template name="getDateFormat">

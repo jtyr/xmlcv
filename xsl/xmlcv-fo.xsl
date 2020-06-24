@@ -1611,11 +1611,17 @@
           </fo:block>
         </fo:table-cell>
         <fo:table-cell>
-          <fo:block text-align="center"><xsl:call-template name="getText"><xsl:with-param name="id" select="'interval_dash'"/></xsl:call-template></fo:block>
+          <fo:block text-align="center">
+            <xsl:if test="string-length($interval/end) = 0 or $interval/end != $interval/start">
+              <xsl:call-template name="getText"><xsl:with-param name="id" select="'interval_dash'"/></xsl:call-template>
+            </xsl:if>
+          </fo:block>
         </fo:table-cell>
         <fo:table-cell>
           <fo:block wrap-option="no-wrap">
             <xsl:choose>
+              <!-- if the END is the same as the START -->
+              <xsl:when test="$interval/end = $interval/start"></xsl:when>
               <!-- if the END is presented -->
               <xsl:when test="string-length($interval/end)">
                 <xsl:call-template name="getDateFormat">
