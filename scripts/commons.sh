@@ -15,7 +15,7 @@ if [ -z ${MAIN_PATH} ]; then MAIN_PATH='../../xmlcv'; fi
 if [ -z ${PROJECT} ]; then PROJECT='cv'; fi
 
 # Default date (current date)
-if [ -z ${DATE} ]; then DATE=$(date "+current_date=\"%d/%m/%Y\""); fi
+if [ -z ${DATE} ]; then DATE=$(date "+current_date=%d/%m/%Y"); fi
 
 # Default path to the FOP config file
 if [ -z ${FOP_CONF} ]; then FOP_CONF="${MAIN_PATH}/etc/xml/fop/conf/myfop.xconf"; fi
