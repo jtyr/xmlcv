@@ -441,7 +441,7 @@
   <div class="section">
     <xsl:choose>
       <xsl:when test="string-length(title)">
-        <div class="section_title"><xsl:value-of select="title"/></div>
+        <div class="section_title"><xsl:apply-templates select="title"/></div>
       </xsl:when>
       <xsl:when test="string-length(title/@id)">
         <div class="section_title"><xsl:call-template name="getText"><xsl:with-param name="id" select="title/@id"/></xsl:call-template></div>
@@ -1430,6 +1430,17 @@
 </xsl:template>
 
 
+<!-- font -->
+<xsl:template match="font">
+  <xsl:variable name="style">
+    <xsl:if test="string-length(./@color)">color: <xsl:value-of select="./@color"/>;</xsl:if>
+    <xsl:if test="string-length(./@size)">font-size: <xsl:value-of select="./@size"/>;</xsl:if>
+  </xsl:variable>
+
+  <span style="{$style}"><xsl:apply-templates/></span>
+</xsl:template>
+
+
 <!-- bold text or description -->
 <xsl:template match="b">
   <b><xsl:apply-templates/></b>
@@ -1456,7 +1467,11 @@
 
 <!-- link -->
 <xsl:template match="a">
-  <a href="{@href}">
+  <xsl:variable name="style">
+      <xsl:if test="string-length(./@color)">color: <xsl:value-of select="./@color"/></xsl:if>
+  </xsl:variable>
+
+  <a href="{@href}" style="{$style}">
     <xsl:apply-templates/>
   </a>
 </xsl:template>

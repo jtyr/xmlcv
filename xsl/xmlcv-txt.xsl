@@ -346,7 +346,7 @@
   <xsl:call-template name="printTitleBullet"/>
   <xsl:choose>
     <xsl:when test="string-length(title)">
-      <xsl:value-of select="title"/>
+      <xsl:apply-templates select="title"/>
     </xsl:when>
     <xsl:when test="string-length(title/@id)">
       <xsl:call-template name="getText"><xsl:with-param name="id" select="title/@id"/></xsl:call-template>

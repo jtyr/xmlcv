@@ -517,7 +517,7 @@
 
     <xsl:choose>
       <xsl:when test="string-length(title)">
-        <fo:block xsl:use-attribute-sets="section.title"><xsl:value-of select="title"/></fo:block>
+        <fo:block xsl:use-attribute-sets="section.title"><xsl:apply-templates select="title"/></fo:block>
       </xsl:when>
       <xsl:when test="string-length(title/@id)">
         <fo:block xsl:use-attribute-sets="section.title"><xsl:call-template name="getText"><xsl:with-param name="id" select="title/@id"/></xsl:call-template></fo:block>
@@ -1641,6 +1641,20 @@
 </xsl:template>
 
 
+<!-- font -->
+<xsl:template match="font">
+  <fo:inline>
+    <xsl:if test="string-length(./@color)">
+      <xsl:attribute name="color"><xsl:value-of select="./@color"/></xsl:attribute>
+    </xsl:if>
+    <xsl:if test="string-length(./@size)">
+      <xsl:attribute name="font-size"><xsl:value-of select="./@size"/></xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </fo:inline>
+</xsl:template>
+
+
 <!-- bold text or description -->
 <xsl:template match="b">
   <fo:inline xsl:use-attribute-sets="text_description.b">
@@ -1686,6 +1700,9 @@
 <xsl:template match="a">
   <fo:inline>
     <fo:basic-link xsl:use-attribute-sets="link" external-destination="{@href}">
+      <xsl:if test="string-length(./@color)">
+        <xsl:attribute name="color"><xsl:value-of select="./@color"/></xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates/>
     </fo:basic-link>
   </fo:inline>
