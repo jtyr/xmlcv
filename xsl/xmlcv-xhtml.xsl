@@ -5,7 +5,7 @@
   **********************************************************
   ** Description: XHTML stylesheet for XMLCV
   **
-  ** (c) Jiri Tyr 2008-2020
+  ** (c) Jiri Tyr 2008-2025
   **********************************************************
   -->
 
@@ -1462,6 +1462,26 @@
 <!-- Nth text or description -->
 <xsl:template match="nth">
   <span class="text_description-nth"><xsl:apply-templates/></span>
+</xsl:template>
+
+
+<!-- unordered list item -->
+<xsl:template match="ul">
+  <xsl:copy-of select="." />
+</xsl:template>
+
+
+<!-- break - new line -->
+<xsl:template match="br">
+  <br/>
+</xsl:template>
+
+
+<!-- paragraph -->
+<xsl:template match="p">
+  <p>
+    <xsl:apply-templates/>
+  </p>
 </xsl:template>
 
 

@@ -5,7 +5,7 @@
   **********************************************************
   ** Description: Utilities - shared template
   **
-  ** (c) Jiri Tyr 2008-2011
+  ** (c) Jiri Tyr 2008-2025
   **********************************************************
   -->
 
@@ -434,6 +434,7 @@
 <!-- word wrapper (http://plasmasturm.org/log/xslwordwrap/) -->
 <!-- Copyright 2010 Aristotle Pagaltzis; under the MIT licence -->
 <!-- http://www.opensource.org/licenses/mit-license.php -->
+<!-- TODO: Respect new lines (for txt output only) -->
 <xsl:template name="wrap-string">
   <xsl:param name="str"/>
   <xsl:param name="wrap-col" select="$line_length" />

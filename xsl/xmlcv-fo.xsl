@@ -5,7 +5,7 @@
   **********************************************************
   ** Description: FO stylesheet for XMLCV
   **
-  ** (c) Jiri Tyr 2008-2020
+  ** (c) Jiri Tyr 2008-2025
   **********************************************************
   -->
 
@@ -553,52 +553,54 @@
           </fo:list-item-label>
 
           <fo:list-item-body xsl:use-attribute-sets="list.item.body">
-            <fo:block keep-together.within-page="always">
-              <xsl:choose>
-                <xsl:when test="string-length(./title/@url)">
-                  <fo:block xsl:use-attribute-sets="experience.title"><fo:basic-link xsl:use-attribute-sets="link" external-destination="{./title/@url}"><xsl:value-of select="./title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/></fo:basic-link></fo:block>
-                </xsl:when>
-                <xsl:otherwise>
-                  <fo:block xsl:use-attribute-sets="experience.title"><xsl:value-of select="./title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/></fo:block>
-                </xsl:otherwise>
-              </xsl:choose>
-              <xsl:if test="./employer">
-                <fo:block xsl:use-attribute-sets="experience.employer">
-                  <xsl:choose>
-                    <xsl:when test="string-length(./employer/label)">
-                      <xsl:value-of select="./employer/label"/>
-                    </xsl:when>
-                    <xsl:when test="string-length(./employer/person)">
-                      <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_responsible'"/></xsl:call-template>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_employer'"/></xsl:call-template>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                  <xsl:if test="string-length(./employer/person)"><xsl:value-of select="./employer/person"/>
+            <fo:block>
+              <fo:block keep-together.within-page="always">
+                <xsl:choose>
+                  <xsl:when test="string-length(./title/@url)">
+                    <fo:block xsl:use-attribute-sets="experience.title"><fo:basic-link xsl:use-attribute-sets="link" external-destination="{./title/@url}"><xsl:value-of select="./title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/></fo:basic-link></fo:block>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <fo:block xsl:use-attribute-sets="experience.title"><xsl:value-of select="./title[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/></fo:block>
+                  </xsl:otherwise>
+                </xsl:choose>
+                <xsl:if test="./employer">
+                  <fo:block xsl:use-attribute-sets="experience.employer">
                     <xsl:choose>
-                      <xsl:when test="string-length(./employer/email)">
-                        <xsl:text> (</xsl:text>
-                        <fo:basic-link xsl:use-attribute-sets="link" external-destination="mailto:{./employer/email}"><xsl:value-of select="./employer/email"/></fo:basic-link>
-                        <xsl:text>)</xsl:text>
-                        <xsl:if test="./employer/email[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if>
+                      <xsl:when test="string-length(./employer/label)">
+                        <xsl:value-of select="./employer/label"/>
+                      </xsl:when>
+                      <xsl:when test="string-length(./employer/person)">
+                        <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_responsible'"/></xsl:call-template>
                       </xsl:when>
                       <xsl:otherwise>
-                        <xsl:if test="./employer/person[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if>
+                        <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_employer'"/></xsl:call-template>
                       </xsl:otherwise>
                     </xsl:choose>
-                  </xsl:if>
-                  <xsl:if test="string-length(./employer/department)"><xsl:value-of select="./employer/department"/><xsl:if test="./employer/department[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
-                  <xsl:if test="string-length(./employer/institute)"><xsl:value-of select="./employer/institute"/><xsl:if test="./employer/institute[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
-                  <xsl:if test="./employer/address">
-                    <xsl:if test="string-length(./employer/address/street)"><xsl:value-of select="./employer/address/street"/><xsl:if test="./employer/address/street[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
-                    <xsl:if test="string-length(./employer/address/postcode)"><xsl:value-of select="./employer/address/postcode"/><xsl:text> </xsl:text></xsl:if>
-                    <xsl:if test="string-length(./employer/address/city)"><xsl:value-of select="./employer/address/city"/><xsl:if test="./employer/address/city[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
-                    <xsl:if test="string-length(./employer/address/country)"><xsl:value-of select="./employer/address/country"/></xsl:if>
-                  </xsl:if>
-                  <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_final'"/></xsl:call-template>
-                </fo:block>
-              </xsl:if>
+                    <xsl:if test="string-length(./employer/person)"><xsl:value-of select="./employer/person"/>
+                      <xsl:choose>
+                        <xsl:when test="string-length(./employer/email)">
+                          <xsl:text> (</xsl:text>
+                          <fo:basic-link xsl:use-attribute-sets="link" external-destination="mailto:{./employer/email}"><xsl:value-of select="./employer/email"/></fo:basic-link>
+                          <xsl:text>)</xsl:text>
+                          <xsl:if test="./employer/email[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:if test="./employer/person[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:if>
+                    <xsl:if test="string-length(./employer/department)"><xsl:value-of select="./employer/department"/><xsl:if test="./employer/department[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
+                    <xsl:if test="string-length(./employer/institute)"><xsl:value-of select="./employer/institute"/><xsl:if test="./employer/institute[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
+                    <xsl:if test="./employer/address">
+                      <xsl:if test="string-length(./employer/address/street)"><xsl:value-of select="./employer/address/street"/><xsl:if test="./employer/address/street[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
+                      <xsl:if test="string-length(./employer/address/postcode)"><xsl:value-of select="./employer/address/postcode"/><xsl:text> </xsl:text></xsl:if>
+                      <xsl:if test="string-length(./employer/address/city)"><xsl:value-of select="./employer/address/city"/><xsl:if test="./employer/address/city[following-sibling::*]"><xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_separator'"/></xsl:call-template></xsl:if></xsl:if>
+                      <xsl:if test="string-length(./employer/address/country)"><xsl:value-of select="./employer/address/country"/></xsl:if>
+                    </xsl:if>
+                    <xsl:call-template name="getText"><xsl:with-param name="id" select="'work_experience_final'"/></xsl:call-template>
+                  </fo:block>
+                </xsl:if>
+              </fo:block>
 
               <xsl:if test="(string-length(./description[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]) and string-length($show_desc) = 0) or (string-length($show_desc) > 0 and $show_desc = 'yes')">
                 <fo:block xsl:use-attribute-sets="experience.description hyphenation">
@@ -1687,12 +1689,51 @@
 </xsl:template>
 
 
+<!-- unordered list -->
+<xsl:template match="ul">
+  <fo:block provisional-distance-between-starts="5mm" margin-bottom="1mm">
+    <fo:list-block>
+      <xsl:apply-templates/>
+    </fo:list-block>
+  </fo:block>
+</xsl:template>
+
+
+<!-- unordered list item -->
+<xsl:template match="ul/li">
+  <fo:list-item>
+    <fo:list-item-label end-indent="label-end()">
+      <fo:block margin-left="2mm">&#x2022;</fo:block>
+    </fo:list-item-label>
+    <fo:list-item-body start-indent="body-start()">
+      <fo:block xsl:use-attribute-sets="hyphenation">
+        <xsl:apply-templates/>
+      </fo:block>
+    </fo:list-item-body>
+  </fo:list-item>
+</xsl:template>
+
+
+<!-- break - new line -->
+<xsl:template match="br">
+  <fo:block margin-top="1mm"></fo:block>
+</xsl:template>
+
+
 <!-- copy any text node beneath text or description -->
 <xsl:template match="text//text()">
   <xsl:copy-of select="." />
 </xsl:template>
 <xsl:template match="description//text()">
   <xsl:copy-of select="." />
+</xsl:template>
+
+
+<!-- paragraph -->
+<xsl:template match="p">
+  <fo:block xsl:use-attribute-sets="hyphenation" margin-bottom="1mm">
+    <xsl:apply-templates/>
+  </fo:block>
 </xsl:template>
 
 

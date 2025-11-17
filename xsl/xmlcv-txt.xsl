@@ -5,7 +5,7 @@
   **********************************************************
   ** Description: TXT stylesheet for XMLCV
   **
-  ** (c) Jiri Tyr 2011-2020
+  ** (c) Jiri Tyr 2011-2025
   **********************************************************
   -->
 
@@ -446,8 +446,11 @@
     </xsl:variable>
 
     <xsl:if test="(string-length(./description[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]) and string-length($show_desc) = 0) or (string-length($show_desc) > 0 and $show_desc = 'yes')">
+      <xsl:variable name="description_content">
+        <xsl:apply-templates select="./description[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]"/>
+      </xsl:variable> 
       <xsl:call-template name="wrap-string">
-        <xsl:with-param name="str" select="concat($desc, normalize-space(./description[(contains(concat(' ', normalize-space(@role), ' '), concat(' ', $role, ' ')) or not(@role)) and (contains(concat(' ', normalize-space(@role2), ' '), concat(' ', $role2, ' ')) or not(@role2))]))"/>
+        <xsl:with-param name="str" select="concat($desc, $description_content)"/>
       </xsl:call-template>
       <xsl:call-template name="printNewLine"/>
     </xsl:if>
@@ -1241,6 +1244,40 @@
       </td>
     </tr>
   </table>
+</xsl:template>
+
+
+<!-- unordered list -->
+<xsl:template match="ul">
+  <xsl:call-template name="printNewLine"/>
+  <xsl:apply-templates/>
+  <xsl:call-template name="printNewLine">
+    <xsl:with-param name="count" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+<!-- unordered list item -->
+<xsl:template match="ul/li">
+  <xsl:text>- </xsl:text>
+  <xsl:apply-templates/>
+  <xsl:call-template name="printNewLine"/>
+</xsl:template>
+
+
+<!-- paragraph -->
+<xsl:template match="p">
+  <xsl:call-template name="printNewLine"/>
+  <xsl:apply-templates/>
+  <xsl:call-template name="printNewLine">
+    <xsl:with-param name="count" select="2"/>
+  </xsl:call-template>
+</xsl:template>
+
+
+<!-- break - new line -->
+<xsl:template match="br">
+  <xsl:call-template name="printNewLine"/>
 </xsl:template>
 
 
